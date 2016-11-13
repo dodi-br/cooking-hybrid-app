@@ -1,0 +1,6 @@
+<span *ngIf="isMultiple(ingredient)">
+  <span *ngIf="persons == 1">{{ persons * ingredient.n }} {{ ingredient.singular }}</span>
+  <span *ngIf="persons != 1">{{ persons * ingredient.n }} {{ ingredient.plural }}</span>
+</span>
+<span *ngIf="isUnit(ingredient)">{{ persons * ingredient.n }}{{ ingredient.unit }} {{ ingredient.name }}</span>
+<span *ngIf="isUnitless(ingredient)">{{ ingredient.name }}</span>

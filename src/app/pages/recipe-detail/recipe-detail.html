@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Recipe
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="center" overflow-scroll="true">
+  <div class="list card" style="box-shadow: none">
+
+    <div class="item item-avatar" style="border: 0;">
+      <img src="assets/img/card-fish.png">
+      <h2>{{recipe.category}}</h2>
+      <p>{{recipe.name}}</p>
+    </div>
+
+    <div class="item item-image" style="border: 0;">
+      <img src="{{recipe.image}}" />
+    </div>
+
+  </div>
+
+  <h4>Beschrijving</h4>
+  <div>
+    {{recipe.description}}
+  </div>
+
+  <h4 translate="Aantal personen"></h4>
+
+  <ion-segment [(ngModel)]="numberOfPersons" color="primary">
+    <ion-segment-button *ngFor="let persons of recipe.allowedPersons" value="{{persons}}">
+      {{persons}}
+    </ion-segment-button>
+  </ion-segment>
+
+  <h4>Ingredients</h4>
+
+  <div class="list list-small">
+
+    <div class="item" *ngFor="let ingredient of recipe.ingredients">
+      <ingredient [ingredient]="ingredient" [persons]="numberOfPersons"></ingredient>
+    </div>
+
+  </div>
+
+  <button class="button button-block button-royal" (click)="start()">
+    Start
+  </button>
+</ion-content>

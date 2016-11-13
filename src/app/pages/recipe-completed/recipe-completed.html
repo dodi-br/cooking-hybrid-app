@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ recipe.name }} completed!
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="center" overflow-scroll="true">
+  You have completed your dish, bon apetite!
+
+  <button (click)="home()">Return to home</button>
+  <button (click)="exitApp()">Exit app (does not work)</button>
+</ion-content>

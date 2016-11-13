@@ -1,0 +1,107 @@
+[
+  {
+    "id": "1",
+    "name": "Pasta with salami",
+    "version": "1",
+    "subtitle": "Oeee thats sweet!",
+    "category": "meat",
+    "image": "assets/img/fish-dish.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vulputate eget turpis ut euismod. Nulla condimentum, metus in imperdiet dignissim, ex orci porttitor mauris, vitae ornare felis quam lobortis orci. Aliquam consectetur vitae tellus a vehicula. Fusce dignissim aliquam ex euismod semper. Vivamus hendrerit lacinia ipsum a ullamcorper. Maecenas iaculis eros nisl, eget condimentum dui imperdiet non. Morbi ultrices elit ac sapien tempor, vitae euismod dui sollicitudin.",
+    "allowedPersons": [1, 2, 3, 4],
+    "defaultNumberOfPersons": 2,
+    "averageDuration": "1h",
+    "type": "container",
+    "ingredients": [
+      {"type": "multiple", "n": 1, "singular": "ui", "plural": "uien"},
+      {"type": "unit", "n": 500, "unit": "gr", "name": "bonen"},
+      {"type": "unit", "n": 300, "unit": "gr", "name": "schol"},
+      {"type": "multiple", "n": 2, "singular": "paprika", "plural": "paprikas"},
+      {"type": "unit", "n": 600, "unit": "ml", "name": "melk"},
+      {"type": "multiple", "n": 12, "singular": "lasagna blad", "plural": "lasagna bladen"},
+      {"type": "unit", "n": 400, "unit": "gr", "name": "rund"},
+      {"type": "unitless", "name": "citroen zout"},
+      {"type": "unitless", "name": "peper, zout"}
+    ],
+    "steps": [
+      {
+        "action": "Cut the onion into rings",
+        "description": "",
+        "image": "",
+        "type": "simple",
+        "ingredient": 0
+      },
+      {
+        "action": "Bake your meat 1",
+        "description": "",
+        "image": "",
+        "type": "timed",
+        "duration": 10,
+        "ingredient": 6,
+        "timerFinishedSteps": [
+          {
+            "action": "Place on plate",
+            "description": "",
+            "image": "",
+            "type": "simple",
+            "ingredient": 0
+          },
+          {
+            "action": "Pour saus on top",
+            "description": "",
+            "image": "",
+            "type": "simple",
+            "ingredient": 0
+          }
+        ]
+      },
+      {
+        "action": "Bake your meat 2",
+        "description": "",
+        "image": "",
+        "type": "timed",
+        "duration": 10,
+        "timerFinishedSteps": [
+          {
+            "action": "Place on plate",
+            "description": "",
+            "image": "",
+            "type": "simple",
+            "ingredient": 0
+          }
+        ]
+      },
+      {
+        "action": "Bake your again 3",
+        "description": "",
+        "image": "",
+        "type": "timed",
+        "duration": 10,
+        "timerFinishedSteps": [
+          {
+            "action": "Place on plate",
+            "description": "",
+            "image": "",
+            "type": "simple",
+            "ingredient": 0
+          }
+        ]
+      },
+      {
+        "action": "Do something",
+        "description": "",
+        "image": "",
+        "type": "simple"
+      },
+      {
+        "action": "Finish after this one",
+        "description": "",
+        "image": "",
+        "type": "simple"
+      },
+      {
+        "action": "Wait for everything to finish",
+        "type": "wait"
+      }
+    ]
+  }
+]
