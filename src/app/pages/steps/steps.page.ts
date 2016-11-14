@@ -92,7 +92,7 @@ export class RootStepsPage extends StepsPage {
     super.next();
   }
 
-  canBeCompleted() {
+  canComplete() {
     let isSecondLast = (array, index) => index == array.length - 2;
     let nextStep = this.steps[this.stepNum + 1];
 
@@ -116,14 +116,18 @@ export class RootStepsPage extends StepsPage {
   private timerFinished(timer: Timer) {
 
     // Remove timer from timers array
-    let index = this.timers.indexOf(timer);
-    this.timers = this.timers.splice(index + 1, 1);
+    this.timers = this.timers.filter(t => t != timer);
 
     // Show popover
-    let modal = this.$modalController.create(TimerStepsPage, {
-      steps: timer.step.timerFinishedSteps
-    });
-    modal.present();
+    if (timer.step.timerFinishedSteps && timer.step.timerFinishedSteps.length > 0) {
+      let modal = this.$modalController.create(TimerStepsPage, {
+        steps: timer.step.timerFinishedSteps
+      });
+      modal.present();
+    }
+
+    // Make some noice!
+    // TODO
   }
 
   private hasActiveTimers() {

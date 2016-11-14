@@ -24,4 +24,8 @@ export class IngredientComponent {
   isMultiple(ingredient: Ingredient) {
     return ingredient.type === 'multiple';
   }
+
+  isNumberCategory(ingredient: Ingredient) {
+    return ingredient.type === 'number';
+  }
 }

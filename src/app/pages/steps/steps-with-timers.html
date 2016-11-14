@@ -12,9 +12,11 @@
     <timer [timer]="timer"></timer>
   </div>
 
-  <step [step]="step"></step>
-
-  <button *ngIf="hasNext()" (click)="next()">Continue</button>
-  <button *ngIf="canBeCompleted()" (click)="complete()">Complete</button>
+  <step
+    [step]="step"
+    [hasNext]="hasNext()"
+    [canComplete]="canComplete()"
+    (onComplete)="complete()"
+    (onNext)="next()"></step>
 
 </ion-content>

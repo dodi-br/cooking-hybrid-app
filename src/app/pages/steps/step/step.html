@@ -1,1 +1,12 @@
 {{ step.action }}
+
+<p>
+{{ step.description }}
+</p>
+
+<button *ngIf="hasNext" (click)="next()">Continue</button>
+<button *ngIf="canComplete" (click)="complete()">Complete</button>
+
+<div *ngIf="hasNext == false && canComplete == false">
+  Wacht totdat je verder kunt!
+</div>
