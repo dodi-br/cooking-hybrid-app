@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {Ingredient} from "../../../models/Ingredient";
+import {Ingredient} from "../../models/Ingredient";
 
 @Component({
   selector: 'ingredient',
@@ -26,6 +26,6 @@ export class IngredientComponent {
   }
 
   isNumberCategory(ingredient: Ingredient) {
-    return ingredient.type === 'number';
+    return ingredient.type === 'number-category';
   }
 }

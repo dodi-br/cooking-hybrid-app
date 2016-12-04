@@ -7,34 +7,89 @@
     "category": "meat",
     "image": "assets/img/fish-dish.png",
     "description": "Een lekker gerecht met penne, salami en rode saus.",
-    "allowedPersons": [1, 2, 3, 4, 5, 6],
+    "allowedPersons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
     "defaultNumberOfPersons": 2,
     "averageDuration": 1800,
     "type": "container",
-    "ingredients": [
-      {"type": "number-category", "n": 2, "singular": "teen", "plural": "tenen", "name": "knoflook"},
-      {"type": "multiple", "n": 1, "singular": "Salami reep (150gr)", "plural": "Salami repen (150gr)"},
-      {"type": "unit", "unit": "gr", "n": 300, "name": "Spinazie"},
-      {"type": "unit", "unit": "gr", "n": 180, "name": "Penne"},
-      {"type": "multiple", "n": 2, "singular": "tomaat", "plural": "tomaten"},
-      {"type": "unitless", "name": "peper"},
-      {"type": "unitless", "name": "zout"},
-      {"type": "unitless", "name": "olijfolie"},
-      {"type": "unitless", "name": "verse basilicum"},
-      {"type": "multiple", "n": 1, "singular": "pot pasta saus", "plural": "potten pasta saus"}
-
-    ],
+    "ingredients": {
+      "knoflook": {
+        "type": "number-category",
+        "n": 2,
+        "singular": "teen",
+        "plural": "tenen",
+        "name": "knoflook"
+      },
+      "salami": {
+        "type": "multiple",
+        "n": 1,
+        "singular": "Salami reep (150gr)",
+        "plural": "Salami repen (150gr)"
+      },
+      "spinazie": {
+        "type": "unit",
+        "unit": "gr",
+        "n": 300,
+        "name": "Spinazie"
+      },
+      "penne": {
+        "type": "unit",
+        "unit": "gr",
+        "n": 180,
+        "name": "Penne"
+      },
+      "tomaat": {
+        "type": "multiple",
+        "n": 2,
+        "singular": "tomaat",
+        "plural": "tomaten"
+      },
+      "peper": {
+        "type": "unitless",
+        "name": "peper"
+      },
+      "zout": {
+        "type": "unitless",
+        "name": "zout"
+      },
+      "olijfolie": {
+        "type": "unitless",
+        "name": "olijfolie"
+      },
+      "basilicum": {
+        "type": "unitless",
+        "name": "verse basilicum"
+      },
+      "saus": {
+        "type": "multiple",
+        "n": 1,
+        "singular": "pot pasta saus",
+        "plural": "potten pasta saus"
+      }
+    },
     "steps": [
       {
         "action": "Haal het vel van 1 knoflook teen",
         "description": "Niet snijden",
-        "type": "simple"
+        "type": "simple",
+        "ingredientId": "knoflook",
+        "amount": {
+          "value": 1,
+          "type": "absolute"
+        }
       },
       {
         "action": "Kook de penne",
         "description": "Kook de penne in 2 liter water, voeg penne pas toe als water kookt. Voeg sneufje zout toe + gepelde knoflook toe.",
         "type": "timed",
         "duration": 720,
+        "ingredientId": "penne",
         "timerFinishedSteps": [
           {
             "action": "Giet water af"
@@ -50,13 +105,15 @@
       {
         "action": "Was de spinazie",
         "description": "",
-        "type": "simple"
+        "type": "simple",
+        "ingredientId": "spinazie"
       },
       {
         "action": "Ontvocht de spinazie",
         "description": "Doe de spinazie in een pan, en verhit 1 min.",
         "type": "timed",
         "duration": 60,
+        "ingredient": "spinazie",
         "timerFinishedSteps": [
           {
             "action": "Giet vocht af"
@@ -72,11 +129,17 @@
       {
         "action": "Versnij de rest van de knoflook in zeer kleine stukjes",
         "description": "",
-        "type": "simple"
+        "ingredientId": "knoflook",
+        "type": "simple",
+        "amount": {
+          "value": -1,
+          "type": "absolute"
+        }
       },
       {
         "action": "Snij de salami",
         "description": "Niet te grote stukken",
+        "ingredientId": "salami",
         "type": "simple"
       },
       {
@@ -84,14 +147,20 @@
         "description": "Klein beetje olie in pan, knoflook erbij. Bak 1 min.",
         "type": "timed",
         "duration": 60,
-        "dependsOn": [3]
+        "ingredientId": "knoflook",
+        "dependsOn": [
+          3
+        ]
       },
       {
         "action": "Bak de salami",
         "description": "Voeg salami toe aan pan, bak 1.5 min",
         "type": "timed",
         "duration": 90,
-        "dependsOn": [6],
+        "ingredientId": "salami",
+        "dependsOn": [
+          6
+        ],
         "timerFinishedSteps": [
           {
             "action": "Giet grootste deel vocht af"
@@ -101,46 +170,66 @@
       {
         "action": "Snij tomaat",
         "description": "Snij de tomaat in partjes",
-        "type": "simple"
+        "type": "simple",
+        "ingredientId": "tomaat"
       },
       {
         "action": "Voeg spinazie toe",
         "description": "Voeg de bewaarde spinazie toe aan de saus. Bak daarna 1 min.",
         "type": "timed",
         "duration": 60,
-        "dependsOn": [7]
+        "ingredientId": "spinazie",
+        "dependsOn": [
+          7
+        ]
       },
       {
         "action": "Voeg saus toe",
         "description": "Voeg de saus toe aan de saus. Bak daarna 1.5 min.",
+        "ingredientId": "saus",
         "type": "timed",
         "duration": 90,
-        "dependsOn": [8]
+        "dependsOn": [
+          8
+        ]
       },
       {
         "action": "Voeg tomaat toe",
         "description": "Voeg de gesneden tomaat toe aan de saus. Bak daarna 1.5 min.",
         "type": "timed",
         "duration": 90,
-        "dependsOn": [9]
+        "ingredientId": "tomaat",
+        "dependsOn": [
+          9
+        ]
       },
       {
         "action": "Voeg peper toe",
         "description": "Voeg peper toe aan de mix.",
         "type": "simple",
-        "dependsOn": [6]
+        "ingredientId": "peper",
+        "dependsOn": [
+          6
+        ]
       },
       {
         "action": "Voeg basicilum toe",
         "description": "Voeg basilicum toe aan de mix.",
         "type": "simple",
-        "dependsOn": [6]
+        "ingredientId": "basicilum",
+        "dependsOn": [
+          6
+        ]
       },
       {
         "action": "Voeg basicilum toe",
         "description": "Voeg basilicum toe aan de mix.",
+        "ingredientId": "basilicum",
         "type": "timed",
-        "dependsOn": [6, 1],
+        "dependsOn": [
+          6,
+          1
+        ],
         "duration": 30
       }
     ]
@@ -153,20 +242,66 @@
     "category": "meat",
     "image": "assets/img/fish-dish.png",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vulputate eget turpis ut euismod. Nulla condimentum, metus in imperdiet dignissim, ex orci porttitor mauris, vitae ornare felis quam lobortis orci. Aliquam consectetur vitae tellus a vehicula. Fusce dignissim aliquam ex euismod semper. Vivamus hendrerit lacinia ipsum a ullamcorper. Maecenas iaculis eros nisl, eget condimentum dui imperdiet non. Morbi ultrices elit ac sapien tempor, vitae euismod dui sollicitudin.",
-    "allowedPersons": [1, 2, 3, 4],
+    "allowedPersons": [
+      1,
+      2,
+      3,
+      4
+    ],
     "defaultNumberOfPersons": 2,
     "averageDuration": "1h",
     "type": "container",
     "ingredients": [
-      {"type": "multiple", "n": 1, "singular": "ui", "plural": "uien"},
-      {"type": "unit", "n": 500, "unit": "gr", "name": "bonen"},
-      {"type": "unit", "n": 300, "unit": "gr", "name": "schol"},
-      {"type": "multiple", "n": 2, "singular": "paprika", "plural": "paprikas"},
-      {"type": "unit", "n": 600, "unit": "ml", "name": "melk"},
-      {"type": "multiple", "n": 12, "singular": "lasagna blad", "plural": "lasagna bladen"},
-      {"type": "unit", "n": 400, "unit": "gr", "name": "rund"},
-      {"type": "unitless", "name": "citroen zout"},
-      {"type": "unitless", "name": "peper, zout"}
+      {
+        "type": "multiple",
+        "n": 1,
+        "singular": "ui",
+        "plural": "uien"
+      },
+      {
+        "type": "unit",
+        "n": 500,
+        "unit": "gr",
+        "name": "bonen"
+      },
+      {
+        "type": "unit",
+        "n": 300,
+        "unit": "gr",
+        "name": "schol"
+      },
+      {
+        "type": "multiple",
+        "n": 2,
+        "singular": "paprika",
+        "plural": "paprikas"
+      },
+      {
+        "type": "unit",
+        "n": 600,
+        "unit": "ml",
+        "name": "melk"
+      },
+      {
+        "type": "multiple",
+        "n": 12,
+        "singular": "lasagna blad",
+        "plural": "lasagna bladen"
+      },
+      {
+        "type": "unit",
+        "n": 400,
+        "unit": "gr",
+        "name": "rund"
+      },
+      {
+        "type": "unitless",
+        "name": "citroen zout"
+      },
+      {
+        "type": "unitless",
+        "name": "peper, zout"
+      }
     ],
     "steps": [
       {

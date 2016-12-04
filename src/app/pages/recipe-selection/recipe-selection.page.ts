@@ -20,8 +20,8 @@ export class RecipeSelectionPage {
       recipe: recipe
     });
   }
-  
+
   refreshRecipes() {
-    
+
   }
 }

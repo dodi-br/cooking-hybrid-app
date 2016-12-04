@@ -9,13 +9,17 @@
 <ion-content class="center" overflow-scroll="true">
 
   <div *ngFor="let timer of timers">
-    <timer [timer]="timer"></timer>
+    <timer *ngIf="!timer.done" [timer]="timer"></timer>
   </div>
 
   <step
+    [persons]="persons"
+    [ingredient]="recipe.ingredients[step.ingredientId]"
     [step]="step"
+    [hasPrevious]="hasPrevious()"
     [hasNext]="hasNext()"
     [canComplete]="canComplete()"
+    (onPrevious)="previous()"
     (onComplete)="complete()"
     (onNext)="next()"></step>
 

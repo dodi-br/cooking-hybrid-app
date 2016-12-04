@@ -1,7 +1,8 @@
 import {Step} from "./Step";
 
 export class Timer {
-  public passed: number = 0;
+  passed: number = 0;
+  done: boolean = false;
 
   constructor(public duration: number, public started: Date, public step: Step, public stepNum: Number) {
   }

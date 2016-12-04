@@ -20,5 +20,5 @@ export class Recipe {
   averageDuration: String;
   type: String;
   steps: Array<Step>;
-  ingredients: Array<Ingredient>;
+  ingredients: { [s: string]: Ingredient; };
 }

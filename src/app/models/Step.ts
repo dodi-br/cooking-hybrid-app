@@ -1,8 +1,4 @@
-
-export enum StepType {
-  SIMPLE,
-  TIMED
-}
+import {Amount} from "./Amount";
 
 export class Step {
   id: Number;
@@ -13,4 +9,6 @@ export class Step {
   duration: number;
   timerFinishedSteps: Array<Step>;
   dependsOn: Array<any>;
+  ingredientId: String;
+  amount: Amount;
 }
