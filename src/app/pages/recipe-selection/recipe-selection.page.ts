@@ -3,16 +3,17 @@ import { NavController } from 'ionic-angular';
 import {RecipeDetailPage} from "../recipe-detail/recipe-detail.page";
 import {Recipe} from "../../models/Recipe";
 import {RecipeService} from "../../services/recipe-service";
+import {Observable} from "rxjs";
 
 @Component({
   templateUrl: 'recipe-selection.html'
 })
 export class RecipeSelectionPage {
 
-  dailyRecipes: Recipe[];
+  dailyRecipes: Observable<Recipe[]>;
 
   constructor(private $nav: NavController, private recipeService: RecipeService) {
-    this.recipeService.getDailyRecipes().subscribe(recipes => this.dailyRecipes = recipes);
+    this.dailyRecipes = recipeService.recipes;
   }
 
   navigateToRecipeDetail(recipe) {

@@ -15,6 +15,8 @@ import {ValuesPipe} from "./pages/recipe-detail/values.pipe";
 import {RunningTimersPipe} from "./pages/steps/running-timers.pipe";
 import {RootStepsPage} from "./pages/steps/root-steps.page";
 import {TimerStepsPage} from "./pages/steps/timer-steps.page";
+import {StoreModule} from '@ngrx/store';
+import {recipesReducer} from "./reducers/recipes.reducer";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {TimerStepsPage} from "./pages/steps/timer-steps.page";
     RunningTimersPipe
   ],
   imports: [
-    IonicModule.forRoot(CookingApp)
+    IonicModule.forRoot(CookingApp),
+    StoreModule.provideStore({ recipes: recipesReducer })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
