@@ -18,13 +18,12 @@ export class RecipeService {
     this.headers.append('Accept', 'application/json');
     this.recipes = store.select('recipes') as Observable<Recipe[]>;
 
-    this.loadRecipes();
+    this.loadRecipes().subscribe();
   }
 
-  private loadRecipes() {
-    this.$http.get(this.configuration.serverUrl + "recipe/daily-recipes.json", {'headers': this.headers})
+  public loadRecipes(): Observable<Recipe[]> {
+    return this.$http.get(this.configuration.serverUrl + "recipe/daily-recipes.json", {'headers': this.headers})
       .map((r: Response) => <Recipe[]>r.json())
-      .map(payload => ({ type: 'LOAD', payload }))
-      .subscribe(action => this.store.dispatch(action));
+      .do(payload => this.store.dispatch(({ type: 'LOAD', payload })));
   }
 }

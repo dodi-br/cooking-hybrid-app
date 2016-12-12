@@ -8,9 +8,13 @@
 
 
 <ion-content class="center" overflow-scroll="true">
-  <ion-refresher
-    pulling-text="Pull to refresh..."
-    on-refresh="refreshRecipes()">
+  <ion-refresher (ionRefresh)="refreshRecipes($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
   </ion-refresher>
 
   <ion-card *ngFor="let recipe of dailyRecipes | async" (click)="navigateToRecipeDetail(recipe)" tappable>

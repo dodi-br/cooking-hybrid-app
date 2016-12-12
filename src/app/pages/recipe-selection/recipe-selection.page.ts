@@ -22,7 +22,8 @@ export class RecipeSelectionPage {
     });
   }
 
-  refreshRecipes() {
-
+  refreshRecipes(refresher) {
+    this.recipeService.loadRecipes()
+      .subscribe(recipes => refresher.complete());
   }
 }
