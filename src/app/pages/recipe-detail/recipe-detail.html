@@ -11,25 +11,25 @@
 
     <div class="item item-avatar" style="border: 0;">
       <img src="assets/img/card-fish.png">
-      <h2>{{recipe.category}}</h2>
-      <p>{{recipe.name}}</p>
+      <h2>{{(recipe | async).category}}</h2>
+      <p>{{(recipe | async).name}}</p>
     </div>
 
     <div class="item item-image" style="border: 0;">
-      <img src="{{recipe.image}}" />
+      <img src="{{(recipe | async).image}}" />
     </div>
 
   </div>
 
   <h4>Beschrijving</h4>
   <div>
-    {{recipe.description}}
+    {{(recipe | async).description}}
   </div>
 
   <h4 translate="Aantal personen"></h4>
 
   <ion-segment [(ngModel)]="numberOfPersons" color="primary">
-    <ion-segment-button *ngFor="let persons of recipe.allowedPersons" value="{{persons}}">
+    <ion-segment-button *ngFor="let persons of (recipe | async).allowedPersons" value="{{persons}}">
       {{persons}}
     </ion-segment-button>
   </ion-segment>
@@ -38,7 +38,7 @@
 
   <div class="list list-small">
 
-    <div class="item" *ngFor="let ingredient of (recipe.ingredients | values)">
+    <div class="item" *ngFor="let ingredient of ((recipe | async).ingredients | values)">
       <ingredient [ingredient]="ingredient" [persons]="numberOfPersons"></ingredient>
     </div>
 

@@ -17,9 +17,8 @@ export class RecipeSelectionPage {
   }
 
   navigateToRecipeDetail(recipe) {
-    this.$nav.push(RecipeDetailPage, {
-      recipe: recipe
-    });
+    this.recipeService.selectRecipe(recipe);
+    this.$nav.push(RecipeDetailPage);
   }
 
   refreshRecipes(refresher) {

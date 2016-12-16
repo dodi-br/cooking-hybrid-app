@@ -17,6 +17,9 @@ import {RootStepsPage} from "./pages/steps/root-steps.page";
 import {TimerStepsPage} from "./pages/steps/timer-steps.page";
 import {StoreModule} from '@ngrx/store';
 import {recipesReducer} from "./reducers/recipes.reducer";
+import {RecipesActions} from "./actions/recipes.actions";
+import {SelectedRecipeActions} from "./actions/selectedRecipe.actions";
+import {selectedRecipeReducer} from "./reducers/selectedRecipe.reducer";
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import {recipesReducer} from "./reducers/recipes.reducer";
   ],
   imports: [
     IonicModule.forRoot(CookingApp),
-    StoreModule.provideStore({ recipes: recipesReducer })
+    StoreModule.provideStore({ recipes: recipesReducer, selectedRecipe: selectedRecipeReducer })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,7 +52,9 @@ import {recipesReducer} from "./reducers/recipes.reducer";
     ScreenService,
     RecipeService,
     Configuration,
-    WindowRef
+    WindowRef,
+    RecipesActions,
+    SelectedRecipeActions
   ]
 })
 export class AppModule {}

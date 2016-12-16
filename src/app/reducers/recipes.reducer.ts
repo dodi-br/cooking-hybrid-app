@@ -1,11 +1,12 @@
 import { ActionReducer } from '@ngrx/store';
 import {Recipe} from "../models/Recipe";
+import {RecipesActions} from "../actions/recipes.actions";
 
-export const LOAD = 'LOAD';
+const initialState: Recipe[] = [];
 
-export const recipesReducer: ActionReducer<Recipe[]> = (state: Recipe[], {type, payload}) => {
+export const recipesReducer: ActionReducer<Recipe[]> = (state: Recipe[] = initialState, {type, payload}) => {
   switch (type) {
-    case LOAD:
+    case RecipesActions.LOAD:
       return payload;
 
     default:
