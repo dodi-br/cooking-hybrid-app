@@ -52,4 +52,8 @@ export class StepsService {
     //obs.subscribe(step => this.store.dispatch(this.stepsActions.previousStep()));
     return obs;
   }
+
+  isTimedStep(step: Step) {
+    return step.type === 'timed';
+  }
 }

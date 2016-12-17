@@ -1,16 +1,13 @@
 import {Step} from "../../models/Step";
-import {TimerStepsPage} from "./timer-steps.page";
 import {Timer} from "../../models/Timer";
 import {RecipeCompletedPage} from "../recipe-completed/recipe-completed.page";
 import {Component} from "@angular/core";
 import {StepsPage} from "./steps.page";
 import {NavParams, NavController, ModalController} from "ionic-angular";
 import {ScreenService} from "../../services/screen-service";
-
-import 'rxjs/add/observable/timer';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/do';
-import { Observable } from 'rxjs/Observable';
+import "rxjs/add/observable/timer";
+import "rxjs/add/operator/take";
+import "rxjs/add/operator/do";
 
 @Component({
   templateUrl: 'root-steps.html'
@@ -33,14 +30,14 @@ export class RootStepsPage extends StepsPage {
 
     let result = super.hasNext() && !this.hasActiveDependingTimers(nextStep);
     if (result && RootStepsPage.isWaitStep(nextStep)) {
-      result = this.hasActiveTimers();
+      // result = this.hasActiveTimers();
     }
     return result;
   }
 
   private hasActiveDependingTimers(step: Step): boolean {
     let dependsOn = step.dependsOn || [];
-    return dependsOn.some(num => this.timers.filter(timer => timer.stepNum == num).length > 0);
+    return dependsOn != null;//.some(num => this.timers.filter(timer => timer.stepNum == num).length > 0);
   }
 
   next() {
@@ -49,11 +46,11 @@ export class RootStepsPage extends StepsPage {
     }
 
     if (RootStepsPage.isTimedStep(this.step)) {
-      let timer = new Timer(this.step.duration, new Date(), this.step, this.stepNum);
-      this.timers.push(timer);
-
-      this.startTimer(timer)
-        .subscribe(() => void 0, () => void 0, () => this.timerFinished(timer));
+      // let timer = new Timer(this.step.duration, new Date(), this.step, this.stepNum);
+      // this.timers.push(timer);
+      //
+      // this.startTimer(timer)
+      //   .subscribe(() => void 0, () => void 0, () => this.timerFinished(timer));
     }
 
     super.next();
@@ -74,31 +71,31 @@ export class RootStepsPage extends StepsPage {
     });
   }
 
-  private startTimer(timer: Timer): Observable<any> {
-    return Observable.timer(1000, 1000)
-      .take(timer.duration)
-      .do(() => timer.timePassed(1));
-  }
+  // private startTimer(timer: Timer): Observable<any> {
+  //   return Observable.timer(1000, 1000)
+  //     .take(timer.duration)
+  //     // .do(() => timer.timePassed(1));
+  // }
 
-  private timerFinished(timer: Timer) {
+  // private timerFinished(timer: Timer) {
 
     // Remove timer from timers array
-    timer.done = true;
-
-    // Show popover
-    if (timer.step.timerFinishedSteps && timer.step.timerFinishedSteps.length > 0) {
-      let modal = this.$modalController.create(TimerStepsPage, {
-        steps: timer.step.timerFinishedSteps
-      });
-      modal.present();
-    }
+    // timer.done = true;
+    //
+    // // Show popover
+    // if (timer.step.timerFinishedSteps && timer.step.timerFinishedSteps.length > 0) {
+    //   let modal = this.$modalController.create(TimerStepsPage, {
+    //     steps: timer.step.timerFinishedSteps
+    //   });
+    //   modal.present();
+    // }
 
     // Make some noice!
     // TODO
-  }
+  // }
 
   private hasActiveTimers() {
-    return this.timers.filter(t => !t.done).length > 0;
+    return this.timers;//.filter(t => !t.done).length > 0;
   }
 
   private static isTimedStep(step: Step) {

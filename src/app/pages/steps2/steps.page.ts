@@ -5,11 +5,14 @@ import {Step} from "../../models/Step";
 import {StepsService} from "./steps.service";
 import {ScreenService} from "../../services/screen-service";
 import {RecipeCompletedPage} from "../recipe-completed/recipe-completed.page";
+import {Timer} from "../../models/Timer";
+import {TimersService} from "./timers.service";
 
 @Component({
   templateUrl: 'steps.html'
 })
 export class StepsPage {
+  // Steps
   currentStep: Observable<Step>;
   nextStep: Observable<Step>;
   previousStep: Observable<Step>;
@@ -17,7 +20,10 @@ export class StepsPage {
   hasPrevious: Observable<boolean>;
   canComplete: Observable<boolean>;
 
-  constructor(private $nav: NavController, private screenService: ScreenService, private stepsService: StepsService) {
+  // Timers
+  runningTimers: Observable<Timer[]>;
+
+  constructor(private $nav: NavController, private screenService: ScreenService, private stepsService: StepsService, private timersService: TimersService) {
     this.currentStep = stepsService.currentStep;
     this.nextStep = stepsService.nextStep;
     this.previousStep = stepsService.previousStep;
@@ -25,6 +31,8 @@ export class StepsPage {
     this.hasNext = this.nextStep.map(next => next != null);
     this.hasPrevious = this.previousStep.map(previous => previous != null);
     this.canComplete = this.hasNext.map(hasNext => !hasNext);
+
+    this.runningTimers = timersService.runningTimers;
 
     this.screenService.keepAwake();
   }

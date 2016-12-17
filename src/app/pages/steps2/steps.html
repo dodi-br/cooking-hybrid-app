@@ -8,9 +8,9 @@
 
 <ion-content class="center" overflow-scroll="true">
 
-  <!--<div *ngFor="let timer of timers">-->
-    <!--<timer *ngIf="!timer.done" [timer]="timer"></timer>-->
-  <!--</div>-->
+  <div *ngFor="let timer of runningTimers | async">
+    <timer [timer]="timer"></timer>
+  </div>
 
   <step
     [step]="currentStep | async"

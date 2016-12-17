@@ -21,6 +21,7 @@
     "@ionic/storage": "1.1.6",
     "@ngrx/core": "^1.2.0",
     "@ngrx/store": "^2.2.1",
+    "@ngrx/effects": "^2.0.0",
     "ionic-angular": "^2.0.0-rc.3",
     "ionic-native": "2.2.3",
     "ionicons": "3.0.0",
