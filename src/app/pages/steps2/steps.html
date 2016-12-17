@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Step
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="center" overflow-scroll="true">
+
+  <!--<div *ngFor="let timer of timers">-->
+    <!--<timer *ngIf="!timer.done" [timer]="timer"></timer>-->
+  <!--</div>-->
+
+  <step
+    [step]="currentStep | async"
+    [hasPrevious]="hasPrevious | async"
+    [hasNext]="hasNext | async"
+    [canComplete]="canComplete | async"
+    (onPrevious)="previous()"
+    (onNext)="next()"
+    (onComplete)="complete()"></step>
+
+</ion-content>

@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http, Headers, Response} from '@angular/http';
 import {Recipe} from "../models/Recipe";
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
 import {Configuration} from "../app.configuration";
 import {Store} from "@ngrx/store";

@@ -1,64 +1,59 @@
 import { ActionReducer } from '@ngrx/store';
 import {Step} from "../models/Step";
+import {StepsActions} from "../actions/steps.actions";
 
-export const LOAD = 'Steps:Load';
-export const NEXT = 'Steps:Next';
-export const PREVIOUS = 'Steps:Previous';
-export const RESET = 'Steps:Reset';
-export const CLEAR = 'Steps:Clear';
-
-export interface StepState {
-  steps: Step[];
+export interface StepsState {
+  all: Step[];
   currentStepId: number;
   currentStep: Step;
-  hasNext: boolean;
-  hasPrevious: boolean;
+  nextStep: Step;
+  previousStep: Step;
 }
 
-const initialState: StepState = {
-  steps: [],
+const initialState: StepsState = {
+  all: [],
   currentStepId: null,
   currentStep: null,
-  hasNext: false,
-  hasPrevious: false
+  nextStep: null,
+  previousStep: null
 };
 
-export const stepsReducer: ActionReducer<StepState> = (state: StepState = initialState, {type, payload}) => {
+export const stepsReducer: ActionReducer<StepsState> = (state: StepsState = initialState, {type, payload}) => {
   switch (type) {
-    case LOAD:
+    case StepsActions.LOAD:
       return {
-        steps: payload,
+        all: payload,
         currentStepId: 0,
         currentStep: payload[0],
-        hasNext: payload.length > 1,
-        hasPrevious: false
+        nextStep: payload[1],
+        previousStep: null
       };
 
-    case NEXT:
+    case StepsActions.NEXT:
       return Object.assign({}, state, {
         currentStepId: state.currentStepId + 1,
-        currentStep: state.steps[state.currentStepId + 1],
-        hasNext: state.currentStepId + 1 < state.steps.length,
-        hasPrevious: true
+        currentStep: state.all[state.currentStepId + 1],
+        nextStep: state.all[state.currentStepId + 2],
+        previousStep: state.currentStep
       });
 
-    case PREVIOUS:
+    case StepsActions.PREVIOUS:
       return Object.assign({}, state, {
         currentStepId: state.currentStepId - 1,
-        currentStep: state.steps[state.currentStepId - 1],
-        hasNext: true,
-        hasPrevious: state.currentStepId - 1 > 0
+        currentStep: state.all[state.currentStepId - 1],
+        nextStep: state.currentStep,
+        previousStep: state.all[state.currentStepId - 2]
       });
 
-    case RESET:
+    case StepsActions.RESET:
       return Object.assign({}, state, {
         currentStepId: 0,
-        currentStep: state.steps[0],
-        hasNext: state.steps.length > 1,
-        hasPrevious: false
+        currentStep: state.all[0],
+        nextStep: state.all[1] ,
+        previousStep: null
       });
 
-    case CLEAR:
+    case StepsActions.CLEAR:
       return Object.assign({}, initialState);
 
     default:

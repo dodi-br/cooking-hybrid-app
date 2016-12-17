@@ -1,0 +1,19 @@
+{{ step.action }}
+
+<p>
+{{ step.description }}
+</p>
+
+<p *ngIf="ingredient">
+  Ingredient
+
+  <!--<ingredient [persons]="persons" [ingredient]="ingredient"></ingredient>-->
+</p>
+
+<button *ngIf="hasPrevious" (click)="previous()">Previous</button>
+<button *ngIf="hasNext" (click)="next()">Continue</button>
+<button *ngIf="canComplete" (click)="complete()">Complete</button>
+
+<div *ngIf="hasNext == false && canComplete == false">
+  Wacht totdat je verder kunt!
+</div>
