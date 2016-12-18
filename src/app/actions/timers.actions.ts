@@ -15,6 +15,8 @@ export class TimersActions {
 
   static COMPLETED = 'Timers:Completed';
   completeTimer(timer: Timer): Action {
+    console.log('complete');
+    console.log(timer);
     return {
       type: TimersActions.COMPLETED,
       payload: timer

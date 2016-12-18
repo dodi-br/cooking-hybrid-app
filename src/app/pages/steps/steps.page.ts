@@ -27,16 +27,8 @@ export class StepsPage {
 
   constructor(private $nav: NavController, private $modalController: ModalController, private screenService: ScreenService, private stepsService: StepsService, private timersService: TimersService) {
     this.assignFields();
+    this.openModalOnFinishedTimer();
     this.screenService.keepAwake();
-
-    this.completedTimers
-      .pairwise()
-      .map(([oldTimers, newTimers]) => newTimers.filter(x => oldTimers.indexOf(x) < 0 ))
-      .switchMap(arr => Observable.from(arr))
-      .subscribe(timer => {
-        let modal = this.$modalController.create(TimerCompletedComponent, {});
-        modal.present();
-      })
   }
 
   private assignFields() {
@@ -46,10 +38,25 @@ export class StepsPage {
 
     this.hasNext = this.nextStep.map(next => next != null);
     this.hasPrevious = this.previousStep.map(previous => previous != null);
-    this.canComplete = this.hasNext.map(hasNext => !hasNext);
 
     this.runningTimers = this.timersService.runningTimers;
     this.completedTimers = this.timersService.completedTimers;
+
+    this.canComplete = Observable.combineLatest(
+      this.hasNext,
+      this.runningTimers
+    ).map(([hasNext, runningTimers]) => !hasNext && runningTimers.length === 0);
+  }
+
+  private openModalOnFinishedTimer() {
+    this.completedTimers
+      .pairwise()
+      .map(([oldTimers, newTimers]) => newTimers.filter(x => oldTimers.indexOf(x) < 0 ))
+      .switchMap(arr => Observable.from(arr))
+      .subscribe(timer => {
+        let modal = this.$modalController.create(TimerCompletedComponent, {});
+        modal.present();
+      })
   }
 
   previous() {

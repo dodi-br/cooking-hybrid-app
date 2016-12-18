@@ -15,6 +15,7 @@ export class StepsEffects {
    * Start a timer for the step that has passed.
    * The reducer will be called first, hence we have to look back in the state, we cannot use current step.
    */
+    // FIXME: complete not always called
   @Effect() effectStartTimer = this.actions
     .ofType(StepsActions.NEXT)
     .map(toPayload)
