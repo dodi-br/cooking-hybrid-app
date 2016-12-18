@@ -3,8 +3,8 @@ import {Recipe} from "../../models/Recipe";
 import {NavController} from "ionic-angular";
 import {Observable} from "rxjs";
 import {RecipeService} from "../../services/recipe-service";
-import {StepsPage} from "../steps2/steps.page";
-import {StepsService} from "../steps2/steps.service";
+import {StepsPage} from "../steps/steps.page";
+import {StepsService} from "../steps/steps.service";
 import {StepsActions} from "../../actions/steps.actions";
 
 import 'rxjs/add/operator/take';

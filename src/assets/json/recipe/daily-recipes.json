@@ -88,7 +88,8 @@
         "action": "Kook de penne",
         "description": "Kook de penne in 2 liter water, voeg penne pas toe als water kookt. Voeg sneufje zout toe + gepelde knoflook toe.",
         "type": "timed",
-        "duration": 720,
+        "duration": 5,
+        "oldDuration": 720,
         "ingredientId": "penne",
         "timerFinishedSteps": [
           {

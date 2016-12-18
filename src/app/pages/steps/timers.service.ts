@@ -13,16 +13,10 @@ import {Observable} from "rxjs";
 @Injectable()
 export class TimersService {
   runningTimers: Observable<Timer[]>;
+  completedTimers: Observable<Timer[]>;
 
   constructor(private store: Store<AppStore>, private timersAction: TimersActions) {
-    this.runningTimers = store.select(state => state.timers.running)
-  }
-
-  startTimer(duration: number) {
-    const timer = new Timer(duration, new Date());
-    this.store.dispatch(this.timersAction.addTimer(timer));
-
-    Observable.timer(duration * 1000)
-      .subscribe(() => this.timersAction.completeTimer(timer));
+    this.runningTimers = store.select(state => state.timers.running);
+    this.completedTimers = store.select(state => state.timers.completed);
   }
 }

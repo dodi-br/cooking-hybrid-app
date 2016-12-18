@@ -1,6 +1,4 @@
-import { ActionReducer } from '@ngrx/store';
-import {Recipe} from "../models/Recipe";
-import {RecipesActions} from "../actions/recipes.actions";
+import {ActionReducer} from "@ngrx/store";
 import {Timer} from "../models/Timer";
 import {TimersActions} from "../actions/timers.actions";
 
