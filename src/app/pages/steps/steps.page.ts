@@ -51,10 +51,14 @@ export class StepsPage {
   private openModalOnFinishedTimer() {
     this.completedTimers
       .pairwise()
-      .map(([oldTimers, newTimers]) => newTimers.filter(x => oldTimers.indexOf(x) < 0 ))
+      .map(([oldTimers, newTimers]) => newTimers.filter(x => oldTimers.indexOf(x) < 0))
       .switchMap(arr => Observable.from(arr))
       .subscribe(timer => {
-        let modal = this.$modalController.create(TimerCompletedComponent, {});
+        let modal = this.$modalController.create(TimerCompletedComponent, {
+          completedStep: timer.model
+        }, {
+          enableBackdropDismiss: false
+        });
         modal.present();
       })
   }

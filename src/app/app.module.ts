@@ -27,6 +27,7 @@ import {StepsEffects} from "./effects/steps.effects";
 import {TimerComponent} from "./pages/steps/timer/timer.component";
 import {EffectsModule} from '@ngrx/effects';
 import {TimerCompletedComponent} from "./pages/steps/timer-completed/timer-completed.component";
+import {TimersEffects} from "./effects/timers.effects";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {TimerCompletedComponent} from "./pages/steps/timer-completed/timer-compl
       steps: stepsReducer,
       timers: timersReducer
     }),
-    EffectsModule.run(StepsEffects)
+    EffectsModule.run(StepsEffects),
+    EffectsModule.run(TimersEffects)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

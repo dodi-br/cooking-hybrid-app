@@ -1,5 +1,13 @@
 <ion-content class="center" overflow-scroll="true">
 
-  HTML!
+  {{ completedStep.action }} is done!
 
+  <step
+    [step]="currentStep"
+    [hasPrevious]="hasPrevious"
+    [hasNext]="hasNext"
+    [canComplete]="canComplete"
+    (onPrevious)="previous()"
+    (onNext)="next()"
+    (onComplete)="complete()"></step>
 </ion-content>
