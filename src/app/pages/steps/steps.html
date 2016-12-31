@@ -9,7 +9,9 @@
 <ion-content class="center" overflow-scroll="true">
 
   <div *ngFor="let timer of runningTimers | async">
-    <timer [timer]="timer" title="Timer for {{ timer.model.action }}"></timer>
+    <timer [timer]="timer">
+      Timer for {{ timer.model.action }}
+    </timer>
   </div>
 
   <step

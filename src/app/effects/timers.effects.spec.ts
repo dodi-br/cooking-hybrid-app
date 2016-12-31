@@ -43,5 +43,20 @@ describe('Effects: TimersEffects', () => {
         done();
       });
     });
+
+    it('should complete first timer when finished and next has started', (done) => {
+      runner.queue(timersActions.addTimer(new Timer(1, new Date())));
+      runner.queue(timersActions.addTimer(new Timer(2, new Date())));
+
+      timersEffects.effectCompleteTimer.take(1).subscribe(result => {
+        expect(result).toEqual(jasmine.objectContaining({
+          type: TimersActions.COMPLETED,
+          payload: jasmine.objectContaining({
+            duration: 1
+          })
+        }));
+        done();
+      });
+    });
   });
 });

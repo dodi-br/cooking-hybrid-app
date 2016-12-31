@@ -75,6 +75,7 @@
     },
     "steps": [
       {
+        "id": 1,
         "action": "Haal het vel van 1 knoflook teen",
         "description": "Niet snijden",
         "type": "simple",
@@ -85,12 +86,16 @@
         }
       },
       {
+        "id": 2,
         "action": "Kook de penne",
         "description": "Kook de penne in 2 liter water, voeg penne pas toe als water kookt. Voeg sneufje zout toe + gepelde knoflook toe.",
         "type": "timed",
         "duration": 5,
         "oldDuration": 720,
         "ingredientId": "penne",
+        "dependsOn": [
+          1
+        ],
         "timerFinishedSteps": [
           {
             "action": "Giet water af"
@@ -104,17 +109,22 @@
         ]
       },
       {
+        "id": 3,
         "action": "Was de spinazie",
         "description": "",
         "type": "simple",
         "ingredientId": "spinazie"
       },
       {
+        "id": 4,
         "action": "Ontvocht de spinazie",
         "description": "Doe de spinazie in een pan, en verhit 1 min.",
         "type": "timed",
         "duration": 60,
         "ingredient": "spinazie",
+        "dependsOn": [
+          3
+        ],
         "timerFinishedSteps": [
           {
             "action": "Giet vocht af"
@@ -128,6 +138,7 @@
         ]
       },
       {
+        "id": 5,
         "action": "Versnij de rest van de knoflook in zeer kleine stukjes",
         "description": "",
         "ingredientId": "knoflook",
@@ -138,29 +149,32 @@
         }
       },
       {
+        "id": 6,
         "action": "Snij de salami",
         "description": "Niet te grote stukken",
         "ingredientId": "salami",
         "type": "simple"
       },
       {
+        "id": 7,
         "action": "Fruit de knoflook",
         "description": "Klein beetje olie in pan, knoflook erbij. Bak 1 min.",
         "type": "timed",
         "duration": 60,
         "ingredientId": "knoflook",
         "dependsOn": [
-          3
+          4, 5
         ]
       },
       {
+        "id": 8,
         "action": "Bak de salami",
         "description": "Voeg salami toe aan pan, bak 1.5 min",
         "type": "timed",
         "duration": 90,
         "ingredientId": "salami",
         "dependsOn": [
-          6
+          6, 7
         ],
         "timerFinishedSteps": [
           {
@@ -169,69 +183,64 @@
         ]
       },
       {
+        "id": 9,
         "action": "Snij tomaat",
         "description": "Snij de tomaat in partjes",
         "type": "simple",
         "ingredientId": "tomaat"
       },
       {
+        "id": 10,
         "action": "Voeg spinazie toe",
         "description": "Voeg de bewaarde spinazie toe aan de saus. Bak daarna 1 min.",
         "type": "timed",
         "duration": 60,
         "ingredientId": "spinazie",
         "dependsOn": [
-          7
+          7, 8
         ]
       },
       {
+        "id": 11,
         "action": "Voeg saus toe",
         "description": "Voeg de saus toe aan de saus. Bak daarna 1.5 min.",
         "ingredientId": "saus",
         "type": "timed",
         "duration": 90,
         "dependsOn": [
-          8
+          10
         ]
       },
       {
+        "id": 12,
         "action": "Voeg tomaat toe",
         "description": "Voeg de gesneden tomaat toe aan de saus. Bak daarna 1.5 min.",
         "type": "timed",
         "duration": 90,
         "ingredientId": "tomaat",
         "dependsOn": [
-          9
+          11
         ]
       },
       {
+        "id": 13,
         "action": "Voeg peper toe",
         "description": "Voeg peper toe aan de mix.",
         "type": "simple",
         "ingredientId": "peper",
         "dependsOn": [
-          6
+          12
         ]
       },
       {
+        "id": 14,
         "action": "Voeg basicilum toe",
         "description": "Voeg basilicum toe aan de mix.",
         "type": "simple",
         "ingredientId": "basicilum",
         "dependsOn": [
-          6
+          12
         ]
-      },
-      {
-        "action": "Voeg basicilum toe",
-        "description": "Voeg basilicum toe aan de mix.",
-        "ingredientId": "basilicum",
-        "type": "timed",
-        "dependsOn": [
-          6,
-          1
-        ],
-        "duration": 30
       }
     ]
   },

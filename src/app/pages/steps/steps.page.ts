@@ -15,15 +15,14 @@ import {TimerCompletedComponent} from "./timer-completed/timer-completed.compone
 export class StepsPage {
   // Steps
   currentStep: Observable<Step>;
-  nextStep: Observable<Step>;
-  previousStep: Observable<Step>;
   hasNext: Observable<boolean>;
   hasPrevious: Observable<boolean>;
   canComplete: Observable<boolean>;
 
   // Timers
-  runningTimers: Observable<Timer[]>;
-  completedTimers: Observable<Timer[]>;
+  runningTimers: Observable<Timer<Step>[]>;
+  completedTimers: Observable<Timer<Step>[]>;
+  completedTimer: Observable<Timer<Step>>;
 
   constructor(private $nav: NavController, private $modalController: ModalController, private screenService: ScreenService, private stepsService: StepsService, private timersService: TimersService) {
     this.assignFields();
@@ -33,26 +32,19 @@ export class StepsPage {
 
   private assignFields() {
     this.currentStep = this.stepsService.currentStep;
-    this.nextStep = this.stepsService.nextStep;
-    this.previousStep = this.stepsService.previousStep;
 
-    this.hasNext = this.nextStep.map(next => next != null);
-    this.hasPrevious = this.previousStep.map(previous => previous != null);
+    this.hasNext = this.stepsService.hasNext;
+    this.hasPrevious = this.stepsService.hasPrevious;
 
     this.runningTimers = this.timersService.runningTimers;
     this.completedTimers = this.timersService.completedTimers;
+    this.completedTimer = this.timersService.completedTimer;
 
-    this.canComplete = Observable.combineLatest(
-      this.hasNext,
-      this.runningTimers
-    ).map(([hasNext, runningTimers]) => !hasNext && runningTimers.length === 0);
+    this.canComplete = this.stepsService.canComplete;
   }
 
   private openModalOnFinishedTimer() {
-    this.completedTimers
-      .pairwise()
-      .map(([oldTimers, newTimers]) => newTimers.filter(x => oldTimers.indexOf(x) < 0))
-      .switchMap(arr => Observable.from(arr))
+    this.completedTimer
       .subscribe(timer => {
         let modal = this.$modalController.create(TimerCompletedComponent, {
           completedStep: timer.model

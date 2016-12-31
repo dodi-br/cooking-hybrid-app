@@ -6,7 +6,7 @@ import {Timer} from "../models/Timer";
 export class TimersActions {
 
   static ADD = 'Timers:Add';
-  addTimer(timer: Timer): Action {
+  addTimer(timer: Timer<any>): Action {
     return {
       type: TimersActions.ADD,
       payload: timer
@@ -14,7 +14,7 @@ export class TimersActions {
   }
 
   static COMPLETED = 'Timers:Completed';
-  completeTimer(timer: Timer): Action {
+  completeTimer(timer: Timer<any>): Action {
     return {
       type: TimersActions.COMPLETED,
       payload: timer

@@ -10,6 +10,7 @@ import 'rxjs/add/operator/publish';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/share';
+import {TimersService} from "./timers.service";
 
 @Injectable()
 export class StepsService {
@@ -18,11 +19,30 @@ export class StepsService {
   nextStep: Observable<Step>;
   previousStep: Observable<Step>;
 
-  constructor(private store: Store<AppStore>, private stepsActions: StepsActions) {
+  hasNext: Observable<boolean>;
+  hasPrevious: Observable<boolean>;
+  canComplete: Observable<boolean>;
+
+  constructor(private store: Store<AppStore>, private stepsActions: StepsActions, private timersService: TimersService) {
     this.steps = store.select(state => state.steps.all);
     this.currentStep = store.select(state => state.steps.currentStep);
     this.nextStep = store.select(state => state.steps.nextStep);
     this.previousStep = store.select(state => state.steps.previousStep);
+
+    this.hasNext = Observable.combineLatest(
+      this.currentStep,
+      this.nextStep,
+      timersService.runningTimers
+    )
+      .map(([currentStep, nextStep, runningTimers]) => [currentStep.dependsOn, nextStep, runningTimers.map(timer => timer.model.id)])
+      .map(([currentDependsOn, nextStep, runningStepIds]) => nextStep != null && (currentDependsOn || []).every(depends => !runningStepIds.includes(depends)));
+
+    this.hasPrevious = this.previousStep.map(previous => previous != null);
+
+    this.canComplete = Observable.combineLatest(
+      this.nextStep.map(step => step != null),
+      timersService.runningTimers
+    ).map(([hasNext, runningTimers]) => !hasNext && runningTimers.length === 0);
   }
 
   load(steps: Step[]) {

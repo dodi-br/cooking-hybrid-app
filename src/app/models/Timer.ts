@@ -1,6 +1,6 @@
-export class Timer {
+export class Timer<T> {
 
-  constructor(public duration: number, public started: Date, public model: any = null) {
+  constructor(public duration: number, public started: Date, public model: T = null) {
   }
 
 }

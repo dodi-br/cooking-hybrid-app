@@ -3,6 +3,7 @@
   {{ completedStep.action }} is done!
 
   <step
+    *ngIf="currentStep"
     [step]="currentStep"
     [hasPrevious]="hasPrevious"
     [hasNext]="hasNext"

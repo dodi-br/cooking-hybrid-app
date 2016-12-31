@@ -38,9 +38,17 @@ export class TimerCompletedComponent {
   }
 
   private updateState() {
-    this.currentStep = this.completedStep.timerFinishedSteps[this.currentStepId];
-    this.hasNext = this.currentStepId < this.completedStep.timerFinishedSteps.length - 1;
-    this.hasPrevious = this.currentStepId > 0;
-    this.canComplete = this.currentStepId === this.completedStep.timerFinishedSteps.length - 1;
+    if (this.completedStep.timerFinishedSteps) {
+      this.currentStep = this.completedStep.timerFinishedSteps[this.currentStepId];
+      this.hasNext = this.currentStepId < this.completedStep.timerFinishedSteps.length - 1;
+      this.hasPrevious = this.currentStepId > 0;
+      this.canComplete = this.currentStepId === this.completedStep.timerFinishedSteps.length - 1;
+    } else {
+      // FIXME: cannot complete
+      this.currentStep = null;
+      this.hasNext = false;
+      this.hasPrevious = false;
+      this.canComplete = true;
+    }
   }
 }

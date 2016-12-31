@@ -3,8 +3,8 @@ import {Timer} from "../models/Timer";
 import {TimersActions} from "../actions/timers.actions";
 
 export interface TimersState {
-  running: Timer[],
-  completed: Timer[]
+  running: Timer<any>[],
+  completed: Timer<any>[]
 }
 
 const initialState: TimersState = {

@@ -7,8 +7,7 @@ import {Observable} from "rxjs";
   templateUrl: 'timer.html'
 })
 export class TimerComponent {
-  @Input() timer: Timer;
-  @Input() title: String;
+  @Input() timer: Timer<any>;
 
   timeLeft: number;
 
