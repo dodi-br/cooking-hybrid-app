@@ -8,11 +8,16 @@ import {RecipeCompletedPage} from "../recipe-completed/recipe-completed.page";
 import {Timer} from "../../models/Timer";
 import {TimersService} from "./timers.service";
 import {TimerCompletedComponent} from "./timer-completed/timer-completed.component";
+import {RecipeService} from "../../services/recipe-service";
+import {Ingredient} from "../../models/Ingredient";
 
 @Component({
   templateUrl: 'steps.html'
 })
 export class StepsPage {
+  // Recipe
+  currentIngredient: Observable<Ingredient>;
+
   // Steps
   currentStep: Observable<Step>;
   hasNext: Observable<boolean>;
@@ -24,13 +29,28 @@ export class StepsPage {
   completedTimers: Observable<Timer<Step>[]>;
   completedTimer: Observable<Timer<Step>>;
 
-  constructor(private $nav: NavController, private $modalController: ModalController, private screenService: ScreenService, private stepsService: StepsService, private timersService: TimersService) {
-    this.assignFields();
+  constructor(
+    private $nav: NavController,
+    private $modalController: ModalController,
+    private screenService: ScreenService,
+    private stepsService: StepsService,
+    private timersService: TimersService,
+    private recipeService: RecipeService) {
+
+    this.assignStepFields();
     this.openModalOnFinishedTimer();
+
+    this.currentIngredient = Observable.combineLatest(
+      recipeService.selectedRecipe,
+      this.currentStep,
+    )
+      .filter(([recipe, step]) => step && step.ingredientId && recipe.ingredients[step.ingredientId])
+      .map(([recipe, step]) => recipe.ingredients[step.ingredientId]);
+
     this.screenService.keepAwake();
   }
 
-  private assignFields() {
+  private assignStepFields() {
     this.currentStep = this.stepsService.currentStep;
 
     this.hasNext = this.stepsService.hasNext;

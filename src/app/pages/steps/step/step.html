@@ -6,9 +6,9 @@
 
 <p *ngIf="ingredient">
   Ingredient
-
-  <!--<ingredient [persons]="persons" [ingredient]="ingredient"></ingredient>-->
 </p>
+
+<ng-content></ng-content>
 
 <button *ngIf="hasPrevious" (click)="previous()">Previous</button>
 <button *ngIf="hasNext" (click)="next()">Continue</button>

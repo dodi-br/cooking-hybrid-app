@@ -21,6 +21,12 @@
     [canComplete]="canComplete | async"
     (onPrevious)="previous()"
     (onNext)="next()"
-    (onComplete)="complete()"></step>
+    (onComplete)="complete()">
+
+    <!-- TODO: persons, remove parts of ingredient -->
+    <ingredient *ngIf="(currentIngredient | async)"
+                [ingredient]="currentIngredient | async"
+                [persons]="3"></ingredient>
+  </step>
 
 </ion-content>
