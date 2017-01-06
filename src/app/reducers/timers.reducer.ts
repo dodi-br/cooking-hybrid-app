@@ -15,6 +15,15 @@ const initialState: TimersState = {
 export const timersReducer: ActionReducer<TimersState> = (state: TimersState = initialState, {type, payload}) => {
   switch (type) {
     case TimersActions.ADD:
+      const alreadyStarted = state.running
+        .concat(state.completed)
+        .map(t => t.model)
+        .some(m => m === payload.model);
+
+      if (alreadyStarted) {
+        return state;
+      }
+
       return Object.assign({}, state, {
         running: state.running.concat(payload)
       });
