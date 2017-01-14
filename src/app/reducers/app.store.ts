@@ -6,5 +6,6 @@ export interface AppStore {
   recipes: Recipe[],
   selectedRecipe: Recipe,
   steps: StepsState,
-  timers: TimersState
+  timers: TimersState,
+  numberOfPersons: number
 }

@@ -7,25 +7,37 @@ import {Ingredient} from "../../models/Ingredient";
 })
 export class IngredientComponent {
 
-  @Input() persons: Number;
+  @Input() persons: number;
   @Input() ingredient: Ingredient;
+  amount: number;
 
-  constructor() {
+  ngOnChanges() {
+    if (this.ingredient && !this.isUnitless()) {
+      this.amount = this.ingredient.n * this.persons;
+    }
   }
 
-  isUnit(ingredient: Ingredient) {
-    return ingredient.type === 'unit';
+  useSingularPlural() {
+    return this.isMultiple() || this.isNumberCategory();
   }
 
-  isUnitless(ingredient: Ingredient) {
-    return ingredient.type === 'unitless';
+  showName() {
+    return this.isUnit() || this.isNumberCategory();
   }
 
-  isMultiple(ingredient: Ingredient) {
-    return ingredient.type === 'multiple';
+  isUnit() {
+    return this.ingredient.type === 'unit';
   }
 
-  isNumberCategory(ingredient: Ingredient) {
-    return ingredient.type === 'number-category';
+  isUnitless() {
+    return this.ingredient.type === 'unitless';
+  }
+
+  isMultiple() {
+    return this.ingredient.type === 'multiple';
+  }
+
+  isNumberCategory() {
+    return this.ingredient.type === 'number-category';
   }
 }

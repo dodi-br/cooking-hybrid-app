@@ -10,6 +10,8 @@ import {TimersService} from "./timers.service";
 import {TimerCompletedComponent} from "./timer-completed/timer-completed.component";
 import {RecipeService} from "../../services/recipe-service";
 import {Ingredient} from "../../models/Ingredient";
+import {PersonsService} from "../../services/persons-service";
+import {Amount} from "../../models/Amount";
 
 @Component({
   templateUrl: 'steps.html'
@@ -17,6 +19,7 @@ import {Ingredient} from "../../models/Ingredient";
 export class StepsPage {
   // Recipe
   currentIngredient: Observable<Ingredient>;
+  currentIngredientAmount: Observable<Amount>;
 
   // Steps
   currentStep: Observable<Step>;
@@ -26,8 +29,9 @@ export class StepsPage {
 
   // Timers
   runningTimers: Observable<Timer<Step>[]>;
-  completedTimers: Observable<Timer<Step>[]>;
-  completedTimer: Observable<Timer<Step>>;
+
+  // Persons
+  numberOfPersons: Observable<number>;
 
   constructor(
     private $nav: NavController,
@@ -35,36 +39,40 @@ export class StepsPage {
     private screenService: ScreenService,
     private stepsService: StepsService,
     private timersService: TimersService,
-    private recipeService: RecipeService) {
+    private recipeService: RecipeService,
+    private personsService: PersonsService) {
 
-    this.assignStepFields();
+    this.assignFields();
     this.openModalOnFinishedTimer();
 
+    this.screenService.keepAwake();
+  }
+
+  private assignFields() {
+    this.currentStep = this.stepsService.currentStep;
+
+    this.hasNext = this.stepsService.hasNext;
+    this.hasPrevious = this.stepsService.hasPrevious;
+    this.canComplete = this.stepsService.canComplete;
+
+    this.runningTimers = this.timersService.runningTimers;
+
+    this.numberOfPersons = this.personsService.numberOfPersons;
+
+    // Calculated
     this.currentIngredient = Observable.combineLatest(
-      recipeService.selectedRecipe,
+      this.recipeService.selectedRecipe,
       this.currentStep,
     )
       .filter(([recipe, step]) => step && step.ingredientId && recipe.ingredients[step.ingredientId])
       .map(([recipe, step]) => recipe.ingredients[step.ingredientId]);
 
-    this.screenService.keepAwake();
-  }
-
-  private assignStepFields() {
-    this.currentStep = this.stepsService.currentStep;
-
-    this.hasNext = this.stepsService.hasNext;
-    this.hasPrevious = this.stepsService.hasPrevious;
-
-    this.runningTimers = this.timersService.runningTimers;
-    this.completedTimers = this.timersService.completedTimers;
-    this.completedTimer = this.timersService.completedTimer;
-
-    this.canComplete = this.stepsService.canComplete;
+    this.currentIngredientAmount = this.currentStep
+      .map(step => step.amount);
   }
 
   private openModalOnFinishedTimer() {
-    this.completedTimer
+    this.timersService.completedTimer
       .subscribe(timer => {
         let modal = this.$modalController.create(TimerCompletedComponent, {
           completedStep: timer.model

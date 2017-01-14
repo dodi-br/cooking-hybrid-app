@@ -1,10 +1,6 @@
-<span *ngIf="isMultiple(ingredient)">
-  <ng-container *ngIf="persons == 1">{{ persons * ingredient.n }} {{ ingredient.singular }}</ng-container>
-  <ng-container *ngIf="persons != 1">{{ persons * ingredient.n }} {{ ingredient.plural }}</ng-container>
+<span *ngIf="useSingularPlural()">
+  <ng-container *ngIf="amount == 1">{{ amount }} {{ ingredient.singular }} <ng-container *ngIf="showName()">{{ ingredient.name }}</ng-container></ng-container>
+  <ng-container *ngIf="amount != 1">{{ amount }} {{ ingredient.plural }} <ng-container *ngIf="showName()">{{ ingredient.name }}</ng-container></ng-container>
 </span>
-<span *ngIf="isUnit(ingredient)">{{ persons * ingredient.n }}{{ ingredient.unit }} {{ ingredient.name }}</span>
-<span *ngIf="isUnitless(ingredient)">{{ ingredient.name }}</span>
-<span *ngIf="isNumberCategory(ingredient)">
-  <ng-container *ngIf="persons == 1">{{ persons * ingredient.n }} {{ ingredient.singular }} {{ ingredient.name }}</ng-container>
-  <ng-container *ngIf="persons != 1">{{ persons * ingredient.n }} {{ ingredient.plural }} {{ ingredient.name }}</ng-container>
-</span>
+<span *ngIf="isUnit()">{{ amount }}{{ ingredient.unit }} <ng-container *ngIf="showName()">{{ ingredient.name }}</ng-container></span>
+<span *ngIf="isUnitless()">{{ ingredient.name }}</span>

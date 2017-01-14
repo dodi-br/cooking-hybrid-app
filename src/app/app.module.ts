@@ -28,6 +28,10 @@ import {TimerComponent} from "./pages/steps/timer/timer.component";
 import {EffectsModule} from '@ngrx/effects';
 import {TimerCompletedComponent} from "./pages/steps/timer-completed/timer-completed.component";
 import {TimersEffects} from "./effects/timers.effects";
+import {personsReducer} from "./reducers/persons.reducer";
+import {PersonsActions} from "./actions/persons.actions";
+import {PersonsService} from "./services/persons-service";
+import {PartialIngredientComponent} from "./components/ingredient/partial-ingredient.component";
 
 @NgModule({
   declarations: [
@@ -37,6 +41,7 @@ import {TimersEffects} from "./effects/timers.effects";
     RecipeCompletedPage,
     StepsPage,
     IngredientComponent,
+    PartialIngredientComponent,
     StepComponent,
     TimerComponent,
     TimerCompletedComponent,
@@ -48,7 +53,8 @@ import {TimersEffects} from "./effects/timers.effects";
       recipes: recipesReducer,
       selectedRecipe: selectedRecipeReducer,
       steps: stepsReducer,
-      timers: timersReducer
+      timers: timersReducer,
+      numberOfPersons: personsReducer
     }),
     EffectsModule.run(StepsEffects),
     EffectsModule.run(TimersEffects)
@@ -63,16 +69,18 @@ import {TimersEffects} from "./effects/timers.effects";
     TimerCompletedComponent
   ],
   providers: [
+    WindowRef,
+    Configuration,
     ScreenService,
     RecipeService,
-    Configuration,
-    WindowRef,
     RecipesActions,
     SelectedRecipeActions,
     StepsService,
     StepsActions,
     TimersService,
-    TimersActions
+    TimersActions,
+    PersonsService,
+    PersonsActions
   ]
 })
 export class AppModule {}

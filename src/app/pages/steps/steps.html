@@ -23,10 +23,10 @@
     (onNext)="next()"
     (onComplete)="complete()">
 
-    <!-- TODO: persons, remove parts of ingredient -->
-    <ingredient *ngIf="(currentIngredient | async)"
+    <partial-ingredient *ngIf="(currentIngredient | async)"
                 [ingredient]="currentIngredient | async"
-                [persons]="3"></ingredient>
+                [amountMultiplicity]="currentIngredientAmount | async"
+                [persons]="numberOfPersons | async"></partial-ingredient>
   </step>
 
 </ion-content>
