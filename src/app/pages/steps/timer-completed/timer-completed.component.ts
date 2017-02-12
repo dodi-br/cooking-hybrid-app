@@ -44,7 +44,6 @@ export class TimerCompletedComponent {
       this.hasPrevious = this.currentStepId > 0;
       this.canComplete = this.currentStepId === this.completedStep.timerFinishedSteps.length - 1;
     } else {
-      // FIXME: cannot complete
       this.currentStep = null;
       this.hasNext = false;
       this.hasPrevious = false;

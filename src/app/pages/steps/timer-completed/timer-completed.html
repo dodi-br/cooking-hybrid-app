@@ -11,4 +11,8 @@
     (onPrevious)="previous()"
     (onNext)="next()"
     (onComplete)="complete()"></step>
+
+  <ng-container *ngIf="currentStep == null && canComplete">
+    <button (click)="complete()">OK!</button>
+  </ng-container>
 </ion-content>
