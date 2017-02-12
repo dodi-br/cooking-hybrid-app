@@ -1,11 +1,12 @@
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
-import {TestBed, inject, async} from "@angular/core/testing";
-import {StepsEffects} from "./steps.effects";
-import {StepsActions} from "../actions/steps.actions";
-import {StepsService} from "../pages/steps/steps.service";
-import {TimersActions} from "../actions/timers.actions";
-import {Observable} from "rxjs";
-import {Step} from "../models/Step";
+import {TestBed, inject, async} from '@angular/core/testing';
+import {StepsEffects} from './steps.effects';
+import {StepsActions} from '../actions/steps.actions';
+import {StepsService} from '../pages/steps/steps.service';
+import {TimersActions} from '../actions/timers.actions';
+import {Observable} from 'rxjs';
+import {Step} from '../models/Step';
+import {} from 'jasmine';
 
 class MockStepsService {
   previousStep: Observable<Step>;

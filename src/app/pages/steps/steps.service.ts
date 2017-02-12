@@ -34,8 +34,9 @@ export class StepsService {
       this.nextStep,
       timersService.runningTimers
     )
-      .map(([currentStep, nextStep, runningTimers]) => [currentStep.dependsOn, nextStep, runningTimers.map(timer => timer.model.id)])
-      .map(([currentDependsOn, nextStep, runningStepIds]) => nextStep != null && (currentDependsOn || []).every(depends => !runningStepIds.includes(depends)));
+      .map(([currentStep, nextStep, runningTimers]) =>
+        nextStep != null && this.depends(currentStep.dependsOn, runningTimers.map(timer => timer.model.id))
+      );
 
     this.hasPrevious = this.previousStep.map(previous => previous != null);
 
@@ -43,6 +44,10 @@ export class StepsService {
       this.nextStep.map(step => step != null),
       timersService.runningTimers
     ).map(([hasNext, runningTimers]) => !hasNext && runningTimers.length === 0);
+  }
+
+  private depends(currentDependsOn: Array<number> = [], runningStepIds: Array<number>): boolean {
+    return currentDependsOn.every(depends => !runningStepIds.includes(depends));
   }
 
   load(steps: Step[]) {

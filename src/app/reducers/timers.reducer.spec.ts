@@ -1,6 +1,7 @@
-import {timersReducer} from "./timers.reducer";
-import {TimersActions} from "../actions/timers.actions";
-import {Timer} from "../models/Timer";
+import {timersReducer} from './timers.reducer';
+import {TimersActions} from '../actions/timers.actions';
+import {Timer} from '../models/Timer';
+import {} from 'jasmine';
 
 describe('Reducers: TimersReducer', () => {
 

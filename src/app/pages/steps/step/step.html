@@ -4,10 +4,6 @@
 {{ step.description }}
 </p>
 
-<p *ngIf="ingredient">
-  Ingredient
-</p>
-
 <ng-content></ng-content>
 
 <button *ngIf="hasPrevious" (click)="previous()">Previous</button>

@@ -1,8 +1,9 @@
-import {EffectsTestingModule, EffectsRunner} from "@ngrx/effects/testing";
-import {TestBed, inject} from "@angular/core/testing";
-import {TimersActions} from "../actions/timers.actions";
-import {TimersEffects} from "./timers.effects";
-import {Timer} from "../models/Timer";
+import {EffectsTestingModule, EffectsRunner} from '@ngrx/effects/testing';
+import {TestBed, inject} from '@angular/core/testing';
+import {TimersActions} from '../actions/timers.actions';
+import {TimersEffects} from './timers.effects';
+import {Timer} from '../models/Timer';
+import {} from 'jasmine';
 
 describe('Effects: TimersEffects', () => {
   beforeEach(() => TestBed.configureTestingModule({

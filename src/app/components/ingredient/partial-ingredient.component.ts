@@ -18,7 +18,7 @@ export class PartialIngredientComponent extends IngredientComponent {
         if (this.amountMultiplicity.value > 0) {
           this.amount = this.amountMultiplicity.value;
         } else {
-          this.amount = this.amount - this.amountMultiplicity.value;
+          this.amount = this.amount + this.amountMultiplicity.value;
         }
       }
     }

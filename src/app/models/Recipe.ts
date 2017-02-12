@@ -8,17 +8,17 @@ export enum RecipeCategory {
 }
 
 export class Recipe {
-  id: Number;
-  name: String;
+  id: number;
+  name: string;
   category: RecipeCategory;
-  version: String;
-  subtitle: String;
-  image: String;
-  description: String;
+  version: string;
+  subtitle: string;
+  image: string;
+  description: string;
   allowedPersons: [number, number];
   defaultNumberOfPersons: number;
-  averageDuration: String;
-  type: String;
+  averageDuration: string;
+  type: string;
   steps: Array<Step>;
   ingredients: { [s: string]: Ingredient; };
 }

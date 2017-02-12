@@ -1,14 +1,14 @@
 import {Amount} from "./Amount";
 
 export class Step {
-  id: Number;
-  action: String;
-  type: String;
-  description: String;
-  image: String;
+  id: number;
+  action: string;
+  type: string;
+  description: string;
+  image: string;
   duration: number;
-  timerFinishedSteps: Array<Step>;
-  dependsOn: Array<any>;
-  ingredientId: String;
+  timerFinishedSteps: Step[];
+  dependsOn: number[];
+  ingredientId: string;
   amount: Amount;
 }

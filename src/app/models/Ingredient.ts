@@ -1,8 +1,8 @@
 export class Ingredient {
-  name: String;
+  name: string;
   n: number;
-  singular: String;
-  plural: String;
-  unit: String;
-  type: String;
+  singular: string;
+  plural: string;
+  unit: string;
+  type: string;
 }

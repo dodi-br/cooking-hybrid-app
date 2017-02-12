@@ -1,4 +1,4 @@
 export class Amount {
   value: number;
-  type: String;
+  type: string;
 }

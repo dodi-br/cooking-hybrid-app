@@ -21,32 +21,32 @@
     "ingredients": {
       "knoflook": {
         "type": "number-category",
-        "n": 2,
+        "n": 1.5,
         "singular": "teen",
         "plural": "tenen",
         "name": "knoflook"
       },
       "salami": {
         "type": "multiple",
-        "n": 1,
+        "n": 0.5,
         "singular": "Salami reep (150gr)",
         "plural": "Salami repen (150gr)"
       },
       "spinazie": {
         "type": "unit",
         "unit": "gr",
-        "n": 300,
+        "n": 150,
         "name": "Spinazie"
       },
       "penne": {
         "type": "unit",
         "unit": "gr",
-        "n": 180,
+        "n": 90,
         "name": "Penne"
       },
       "tomaat": {
         "type": "multiple",
-        "n": 2,
+        "n": 1,
         "singular": "tomaat",
         "plural": "tomaten"
       },
@@ -68,7 +68,7 @@
       },
       "saus": {
         "type": "multiple",
-        "n": 1,
+        "n": 0.5,
         "singular": "pot pasta saus",
         "plural": "potten pasta saus"
       }

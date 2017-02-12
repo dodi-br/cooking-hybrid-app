@@ -13,7 +13,7 @@ import {PersonsService} from "../../services/persons-service";
 })
 export class RecipeDetailPage {
   recipe: Observable<Recipe>;
-  numberOfPersons: String;
+  numberOfPersons: string;
 
   constructor(private $nav: NavController, private recipeService: RecipeService,
               private stepsService: StepsService, private personsService: PersonsService) {

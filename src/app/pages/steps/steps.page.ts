@@ -64,7 +64,7 @@ export class StepsPage {
       this.recipeService.selectedRecipe,
       this.currentStep,
     )
-      .filter(([recipe, step]) => step && step.ingredientId && recipe.ingredients[step.ingredientId])
+      .filter(([recipe, step]) => step != null && step.ingredientId != null && recipe.ingredients[step.ingredientId] != null)
       .map(([recipe, step]) => recipe.ingredients[step.ingredientId]);
 
     this.currentIngredientAmount = this.currentStep
