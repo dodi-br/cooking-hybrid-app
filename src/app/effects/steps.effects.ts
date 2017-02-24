@@ -5,6 +5,7 @@ import {StepsActions} from "../actions/steps.actions";
 import {Observable} from "rxjs";
 import {TimersActions} from "../actions/timers.actions";
 import {Timer} from "../models/Timer";
+import {Action} from "@ngrx/store";
 
 @Injectable()
 export class StepsEffects {
@@ -15,7 +16,7 @@ export class StepsEffects {
    * Start a timer for the step that has passed.
    * The reducer will be called first, hence we have to look back in the state, we cannot use current step.
    */
-  @Effect() effectStartTimer = this.actions
+  @Effect() effectStartTimer: Observable<Action> = this.actions
     .ofType(StepsActions.NEXT)
     .map(toPayload)
     .switchMap(() => this.stepsService.previousStep.take(1))
