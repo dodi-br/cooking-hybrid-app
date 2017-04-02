@@ -33,6 +33,8 @@ import {PersonsActions} from "./actions/persons.actions";
 import {PersonsService} from "./services/persons-service";
 import {PartialIngredientComponent} from "./components/ingredient/partial-ingredient.component";
 import {RecipesEffects} from "./effects/recipes.effects";
+import {SocialSharing} from "@ionic-native/social-sharing";
+import {SocialSharingService} from "./services/social-sharing-service";
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import {RecipesEffects} from "./effects/recipes.effects";
   ],
   providers: [
     WindowRef,
+    SocialSharing,
+    SocialSharingService,
     Configuration,
     ScreenService,
     RecipeService,

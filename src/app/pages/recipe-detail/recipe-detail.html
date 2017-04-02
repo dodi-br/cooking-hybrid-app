@@ -47,4 +47,8 @@
   <button (click)="start()">
     Start
   </button>
+
+  <button *ngIf="whatsAppEnabled | async" (click)="shareRecipe()">
+    Share via Whatsapp!
+  </button>
 </ion-content>
