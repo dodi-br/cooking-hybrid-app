@@ -22,7 +22,7 @@ export class RecipeSelectionPage {
   }
 
   refreshRecipes(refresher) {
-    this.recipeService.loadRecipes()
-      .subscribe(recipes => refresher.complete());
+    this.recipeService.loadRecipes();
+    this.dailyRecipes.subscribe(recipes => refresher.complete());
   }
 }

@@ -6,9 +6,16 @@ import {Action} from '@ngrx/store';
 export class RecipesActions {
 
   static LOAD = 'Recipes:Load';
-  loadRecipes(recipes: Recipe[]): Action {
+  loadRecipes(): Action {
     return {
-      type: RecipesActions.LOAD,
+      type: RecipesActions.LOAD
+    }
+  }
+
+  static LOAD_SUCCESS = 'Recipes:LoadSuccess';
+  loadRecipesSuccess(recipes: Recipe[]): Action {
+    return {
+      type: RecipesActions.LOAD_SUCCESS,
       payload: recipes
     }
   }

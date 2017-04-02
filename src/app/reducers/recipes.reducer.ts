@@ -6,7 +6,7 @@ const initialState: Recipe[] = [];
 
 export const recipesReducer: ActionReducer<Recipe[]> = (state: Recipe[] = initialState, {type, payload}) => {
   switch (type) {
-    case RecipesActions.LOAD:
+    case RecipesActions.LOAD_SUCCESS:
       return payload;
 
     default:

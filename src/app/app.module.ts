@@ -32,6 +32,7 @@ import {personsReducer} from "./reducers/persons.reducer";
 import {PersonsActions} from "./actions/persons.actions";
 import {PersonsService} from "./services/persons-service";
 import {PartialIngredientComponent} from "./components/ingredient/partial-ingredient.component";
+import {RecipesEffects} from "./effects/recipes.effects";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {PartialIngredientComponent} from "./components/ingredient/partial-ingred
       numberOfPersons: personsReducer
     }),
     EffectsModule.run(StepsEffects),
-    EffectsModule.run(TimersEffects)
+    EffectsModule.run(TimersEffects),
+    EffectsModule.run(RecipesEffects)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

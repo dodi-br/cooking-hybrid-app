@@ -1,4 +1,3 @@
-- introduce RECIPE_LOAD and RECIPE_LOAD_SUCCESS. RECIPE_LOAD should do nothing in reducer, but in side-effect: invoke service & send RECIPE_LOAD_SUCCESS
 - proper serviceworkers
 - ingredient with amoutn during steps
 
