@@ -20,8 +20,11 @@ export class SocialSharingService {
       .flatMap(() => Observable.fromPromise(socialSharing.canShareVia('facebook')));
   }
 
-  shareViaWhatsApp(message: string, image: string) {
+  shareViaWhatsApp(message: string, image: string, url: string) {
     return this.whatsAppEnabled
-      .switchMap(enabled => enabled ? Observable.fromPromise(this.socialSharing.shareViaWhatsApp(message, image)) : Observable.throw('WhatsApp not supported'));
+      .switchMap(enabled => enabled ?
+        Observable.fromPromise(this.socialSharing.shareViaWhatsApp(message, image, url)) :
+        Observable.throw('WhatsApp not supported')
+      );
   }
 }

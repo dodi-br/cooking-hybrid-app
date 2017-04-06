@@ -35,6 +35,6 @@ export class RecipeDetailPage {
 
   shareRecipe() {
     this.recipe.take(1)
-      .subscribe(recipe => this.socialSharing.shareViaWhatsApp(recipe.name, recipe.image));
+      .subscribe(recipe => this.socialSharing.shareViaWhatsApp(recipe.name, recipe.image, null));
   }
 }
