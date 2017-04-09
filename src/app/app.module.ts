@@ -38,6 +38,10 @@ import {SocialSharingService} from "./services/social-sharing-service";
 import {Ionic2RatingModule} from "ionic2-rating";
 import {JsonHttp} from "./services/json-http.service";
 import {TimingEffects} from "./effects/timing.effects";
+import {BrowserModule} from "@angular/platform-browser";
+import {HttpModule} from "@angular/http";
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen'
 
 @NgModule({
   declarations: [
@@ -54,6 +58,8 @@ import {TimingEffects} from "./effects/timing.effects";
     ValuesPipe
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
     IonicModule.forRoot(CookingApp),
     StoreModule.provideStore({
       recipes: recipesReducer,
@@ -92,7 +98,9 @@ import {TimingEffects} from "./effects/timing.effects";
     TimersActions,
     PersonsService,
     PersonsActions,
-    JsonHttp
+    JsonHttp,
+    StatusBar,
+    SplashScreen
   ]
 })
 export class AppModule {}
