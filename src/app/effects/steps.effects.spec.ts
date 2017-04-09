@@ -30,8 +30,12 @@ describe('Effects: StepsEffects', () => {
     ],
     providers: [
       StepsEffects,
-      {provide: StepsService, useClass: MockStepsService},
-      TimersActions
+      TimersActions,
+      StepsActions,
+      {
+        provide: StepsService,
+        useClass: MockStepsService
+      }
     ]
   }));
 

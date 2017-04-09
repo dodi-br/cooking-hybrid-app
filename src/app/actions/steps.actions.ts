@@ -5,10 +5,10 @@ import {Step} from "../models/Step";
 @Injectable()
 export class StepsActions {
 
-  static LOAD = 'Steps:Load';
-  loadSteps(steps: Step[]): Action {
+  static START = 'Steps:Start';
+  start(steps: Step[]): Action {
     return {
-      type: StepsActions.LOAD,
+      type: StepsActions.START,
       payload: steps
     }
   }
@@ -33,6 +33,13 @@ export class StepsActions {
       type: StepsActions.RESET
     }
   }
+
+  static COMPLETE = 'Steps:Complete';
+  complete(): Action {
+    return {
+      type: StepsActions.COMPLETE
+    }
+  };
 
   static CLEAR = 'Steps:Clear';
   clear(): Action {

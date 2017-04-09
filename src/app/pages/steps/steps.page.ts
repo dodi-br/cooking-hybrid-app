@@ -96,7 +96,7 @@ export class StepsPage {
       .complete()
       .subscribe(() => {
         this.screenService.allowSleepAgain();
-        this.$nav.setRoot(RecipeCompletedPage);
     });
+    this.$nav.setRoot(RecipeCompletedPage);
   }
 }

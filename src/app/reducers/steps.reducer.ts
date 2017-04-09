@@ -7,7 +7,8 @@ export interface StepsState {
   currentStepId: number;
   currentStep: Step;
   nextStep: Step;
-  previousStep: Step;
+  previousStep: Step,
+  startTime: Date
 }
 
 const initialState: StepsState = {
@@ -15,18 +16,20 @@ const initialState: StepsState = {
   currentStepId: null,
   currentStep: null,
   nextStep: null,
-  previousStep: null
+  previousStep: null,
+  startTime: null
 };
 
 export const stepsReducer: ActionReducer<StepsState> = (state: StepsState = initialState, {type, payload}) => {
   switch (type) {
-    case StepsActions.LOAD:
+    case StepsActions.START:
       return {
         all: payload,
         currentStepId: 0,
         currentStep: payload[0],
         nextStep: payload[1],
-        previousStep: null
+        previousStep: null,
+        startTime: new Date()
       };
 
     case StepsActions.NEXT:

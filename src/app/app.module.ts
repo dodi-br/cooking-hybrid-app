@@ -25,7 +25,7 @@ import {TimersService} from "./pages/steps/timers.service";
 import {TimersActions} from "./actions/timers.actions";
 import {StepsEffects} from "./effects/steps.effects";
 import {TimerComponent} from "./pages/steps/timer/timer.component";
-import {EffectsModule} from '@ngrx/effects';
+import {EffectsModule} from "@ngrx/effects";
 import {TimerCompletedComponent} from "./pages/steps/timer-completed/timer-completed.component";
 import {TimersEffects} from "./effects/timers.effects";
 import {personsReducer} from "./reducers/persons.reducer";
@@ -35,6 +35,9 @@ import {PartialIngredientComponent} from "./components/ingredient/partial-ingred
 import {RecipesEffects} from "./effects/recipes.effects";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {SocialSharingService} from "./services/social-sharing-service";
+import {Ionic2RatingModule} from "ionic2-rating";
+import {JsonHttp} from "./services/json-http.service";
+import {TimingEffects} from "./effects/timing.effects";
 
 @NgModule({
   declarations: [
@@ -59,9 +62,11 @@ import {SocialSharingService} from "./services/social-sharing-service";
       timers: timersReducer,
       numberOfPersons: personsReducer
     }),
+    EffectsModule.run(TimingEffects),
     EffectsModule.run(StepsEffects),
     EffectsModule.run(TimersEffects),
-    EffectsModule.run(RecipesEffects)
+    EffectsModule.run(RecipesEffects),
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -86,7 +91,8 @@ import {SocialSharingService} from "./services/social-sharing-service";
     TimersService,
     TimersActions,
     PersonsService,
-    PersonsActions
+    PersonsActions,
+    JsonHttp
   ]
 })
 export class AppModule {}

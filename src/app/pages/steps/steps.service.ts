@@ -23,11 +23,16 @@ export class StepsService {
   hasPrevious: Observable<boolean>;
   canComplete: Observable<boolean>;
 
+  startTime: Observable<Date>;
+
   constructor(private store: Store<AppStore>, private stepsActions: StepsActions, private timersService: TimersService) {
     this.steps = store.select(state => state.steps.all);
-    this.currentStep = store.select(state => state.steps.currentStep);
+    this.currentStep = store.select(state => state.steps.currentStep)
+      .filter(step => step != null);
     this.nextStep = store.select(state => state.steps.nextStep);
     this.previousStep = store.select(state => state.steps.previousStep);
+
+    this.startTime = store.select(state => state.steps.startTime);
 
     this.hasNext = Observable.combineLatest(
       this.currentStep,
@@ -50,31 +55,31 @@ export class StepsService {
     return currentDependsOn.every(depends => !runningStepIds.includes(depends));
   }
 
-  load(steps: Step[]) {
-    this.store.dispatch(this.stepsActions.loadSteps(steps));
+  start(steps: Step[]) {
+    this.store.dispatch(this.stepsActions.start(steps));
   }
 
   previous() {
-    let obs =  this.previousStep.take(1)
-      .filter(step => step != null);
+    const obs =  this.previousStep.take(1)
+      .flatMap(step => step != null ? Observable.of(step) : Observable.throw('Unable to previous, no previous tasks'));
 
     obs.subscribe(step => this.store.dispatch(this.stepsActions.previousStep()));
     return obs;
   }
 
   next() {
-    let obs =  this.nextStep.take(1)
-      .filter(step => step != null);
+    const obs =  this.nextStep.take(1)
+      .flatMap(step => step != null ? Observable.of(step) : Observable.throw('Unable to next, no tasks left'));
 
     obs.subscribe(step => this.store.dispatch(this.stepsActions.nextStep()));
     return obs;
   }
 
   complete() {
-    let obs =  this.nextStep.take(1)
-      .filter(step => step == null);
+    const obs =  this.nextStep.take(1)
+      .flatMap(step => step == null ? Observable.of(step) : Observable.throw('Unable to complete, there are still steps left'));
 
-    //obs.subscribe(step => this.store.dispatch(this.stepsActions.previousStep()));
+    obs.subscribe(step => this.store.dispatch(this.stepsActions.complete()));
     return obs;
   }
 

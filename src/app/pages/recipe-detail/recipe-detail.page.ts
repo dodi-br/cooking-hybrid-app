@@ -28,7 +28,7 @@ export class RecipeDetailPage {
 
   start() {
     this.recipe.take(1)
-      .do(recipe => this.stepsService.load(recipe.steps))
+      .do(recipe => this.stepsService.start(recipe.steps))
       .do(() => this.personsService.selectNumberOfPersons(Number(this.numberOfPersons)))
       .subscribe(() => this.$nav.setRoot(StepsPage));
   }

@@ -10,7 +10,7 @@ import {Action} from "@ngrx/store";
 @Injectable()
 export class StepsEffects {
 
-  constructor(private actions: Actions, private stepsService: StepsService, private timersActions: TimersActions) {}
+  constructor(private actions: Actions, private stepsService: StepsService, private timersActions: TimersActions, private stepsActions: StepsActions) {}
 
   /**
    * Start a timer for the step that has passed.
@@ -25,4 +25,12 @@ export class StepsEffects {
       const timer = new Timer(step.duration, new Date(), step);
       return Observable.of(this.timersActions.addTimer(timer));
     });
+
+  /**
+   * Clear the steps if all steps have been completed
+   */
+  @Effect() clearAfterComplete: Observable<Action> = this.actions
+    .ofType(StepsActions.COMPLETE)
+    .map(toPayload)
+    .switchMap(() => Observable.of(this.stepsActions.clear()));
 }
