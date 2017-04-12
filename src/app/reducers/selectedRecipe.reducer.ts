@@ -9,6 +9,9 @@ export const selectedRecipeReducer: ActionReducer<Recipe> = (state: Recipe = ini
     case SelectedRecipeActions.SELECT:
       return payload;
 
+    case SelectedRecipeActions.DESELECT:
+      return initialState;
+
     default:
       return state;
   }

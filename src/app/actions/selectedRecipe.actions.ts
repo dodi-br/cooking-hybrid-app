@@ -12,4 +12,11 @@ export class SelectedRecipeActions {
       payload: recipe
     }
   }
+
+  static DESELECT = 'Recipes:Deselect';
+  deselectRecipe(): Action {
+    return {
+      type: SelectedRecipeActions.DESELECT
+    }
+  }
 }

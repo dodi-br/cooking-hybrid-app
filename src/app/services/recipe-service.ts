@@ -26,4 +26,8 @@ export class RecipeService {
   public selectRecipe(recipe: Recipe) {
     this.store.dispatch(this.selectedRecipeActions.selectRecipe(recipe));
   }
+
+  public deselectRecipe() {
+    this.store.dispatch(this.selectedRecipeActions.deselectRecipe());
+  }
 }

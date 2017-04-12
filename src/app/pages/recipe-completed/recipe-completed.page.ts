@@ -11,7 +11,6 @@ import {Observable} from "rxjs";
 })
 export class RecipeCompletedPage {
   recipe: Observable<Recipe>;
-  hasRated: boolean;
 
   constructor(private $platform: Platform, private $navController: NavController, private recipesService: RecipeService) {
     this.$platform = $platform;
@@ -23,6 +22,7 @@ export class RecipeCompletedPage {
   }
 
   home() {
+    this.recipesService.deselectRecipe();
     this.$navController.setRoot(RecipeSelectionPage);
   }
 }
