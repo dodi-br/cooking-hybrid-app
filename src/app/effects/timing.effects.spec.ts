@@ -1,6 +1,5 @@
 import {EffectsTestingModule, EffectsRunner} from "@ngrx/effects/testing";
-import {TestBed, inject, fakeAsync} from "@angular/core/testing";
-import {TimersEffects} from "./timers.effects";
+import {TestBed, inject} from "@angular/core/testing";
 import {TimingEffects} from "./timing.effects";
 import {StepsActions} from "../actions/steps.actions";
 import {StepsService} from "../pages/steps/steps.service";

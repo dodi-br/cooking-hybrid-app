@@ -42,6 +42,8 @@ import {BrowserModule} from "@angular/platform-browser";
 import {HttpModule} from "@angular/http";
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen'
+import {RatingssEffects} from "./effects/ratings.effects";
+import {LocalNotifications} from "@ionic-native/local-notifications";
 
 @NgModule({
   declarations: [
@@ -72,6 +74,7 @@ import {SplashScreen} from '@ionic-native/splash-screen'
     EffectsModule.run(StepsEffects),
     EffectsModule.run(TimersEffects),
     EffectsModule.run(RecipesEffects),
+    EffectsModule.run(RatingssEffects),
     Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
@@ -100,7 +103,8 @@ import {SplashScreen} from '@ionic-native/splash-screen'
     PersonsActions,
     JsonHttp,
     StatusBar,
-    SplashScreen
+    SplashScreen,
+    LocalNotifications
   ]
 })
 export class AppModule {}

@@ -15,6 +15,9 @@
     "types": [
       "jasmine"
     ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     "sourceMap": true
   },
   "include": [
