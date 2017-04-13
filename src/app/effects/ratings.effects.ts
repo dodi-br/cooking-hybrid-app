@@ -7,7 +7,7 @@ import {LocalNotifications} from "@ionic-native/local-notifications";
 const NOTIFICATION_DELAY = 1000 * 60 * 45;
 
 @Injectable()
-export class RatingssEffects {
+export class RatingsEffects {
 
   constructor(private actions: Actions, private localNotifications: LocalNotifications) {}
 

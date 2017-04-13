@@ -1,9 +1,10 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from "@angular/core";
 import {Step} from "../../../models/Step";
 
 @Component({
   selector: 'step',
-  templateUrl: 'step.html'
+  templateUrl: 'step.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepComponent {
   @Input() step: Step;

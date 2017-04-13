@@ -1,22 +1,25 @@
-import {Component} from "@angular/core";
-import {NavController, ModalController} from "ionic-angular";
-import {Observable} from "rxjs";
-import {Step} from "../../models/Step";
-import {StepsService} from "./steps.service";
-import {ScreenService} from "../../services/screen-service";
-import {RecipeCompletedPage} from "../recipe-completed/recipe-completed.page";
-import {Timer} from "../../models/Timer";
-import {TimersService} from "./timers.service";
-import {TimerCompletedComponent} from "./timer-completed/timer-completed.component";
-import {RecipeService} from "../../services/recipe-service";
-import {Ingredient} from "../../models/Ingredient";
-import {PersonsService} from "../../services/persons-service";
-import {Amount} from "../../models/Amount";
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
+import {NavController, ModalController} from 'ionic-angular';
+import {Observable, Subject} from 'rxjs';
+import {Step} from '../../models/Step';
+import {StepsService} from './steps.service';
+import {ScreenService} from '../../services/screen-service';
+import {RecipeCompletedPage} from '../recipe-completed/recipe-completed.page';
+import {Timer} from '../../models/Timer';
+import {TimersService} from './timers.service';
+import {TimerCompletedComponent} from './timer-completed/timer-completed.component';
+import {RecipeService} from '../../services/recipe-service';
+import {Ingredient} from '../../models/Ingredient';
+import {PersonsService} from '../../services/persons-service';
+import {Amount} from '../../models/Amount';
 
 @Component({
-  templateUrl: 'steps.html'
+  templateUrl: 'steps.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StepsPage {
+export class StepsPage implements OnInit, OnDestroy {
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
+
   // Recipe
   currentIngredient: Observable<Ingredient>;
   currentIngredientAmount: Observable<Amount>;
@@ -41,11 +44,18 @@ export class StepsPage {
     private timersService: TimersService,
     private recipeService: RecipeService,
     private personsService: PersonsService) {
+  }
 
+  ngOnInit() {
     this.assignFields();
     this.openModalOnFinishedTimer();
 
     this.screenService.keepAwake();
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   private assignFields() {
@@ -73,8 +83,9 @@ export class StepsPage {
 
   private openModalOnFinishedTimer() {
     this.timersService.completedTimer
+      .takeUntil(this.ngUnsubscribe)
       .subscribe(timer => {
-        let modal = this.$modalController.create(TimerCompletedComponent, {
+        const modal = this.$modalController.create(TimerCompletedComponent, {
           completedStep: timer.model
         }, {
           enableBackdropDismiss: false
@@ -94,6 +105,7 @@ export class StepsPage {
   complete() {
     this.stepsService
       .complete()
+      .takeUntil(this.ngUnsubscribe)
       .subscribe(() => {
         this.screenService.allowSleepAgain();
     });

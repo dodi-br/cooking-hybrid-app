@@ -1,10 +1,11 @@
-import {Component} from "@angular/core";
+import {Component, ChangeDetectionStrategy} from "@angular/core";
 import {ViewController, NavParams} from "ionic-angular";
 import {Step} from "../../../models/Step";
 
 @Component({
   selector: 'timer-completed',
-  templateUrl: 'timer-completed.html'
+  templateUrl: 'timer-completed.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TimerCompletedComponent {
 

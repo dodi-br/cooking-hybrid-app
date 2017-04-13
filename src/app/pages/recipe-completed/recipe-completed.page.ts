@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {Recipe} from "../../models/Recipe";
 import {NavController} from "ionic-angular";
 import {Platform} from 'ionic-angular';
@@ -7,7 +7,8 @@ import {RecipeService} from "../../services/recipe-service";
 import {Observable} from "rxjs";
 
 @Component({
-  templateUrl: 'recipe-completed.html'
+  templateUrl: 'recipe-completed.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RecipeCompletedPage {
   recipe: Observable<Recipe>;

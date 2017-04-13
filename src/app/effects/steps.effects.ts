@@ -2,15 +2,20 @@ import {Injectable} from "@angular/core";
 import {StepsService} from "../pages/steps/steps.service";
 import {Effect, Actions, toPayload} from "@ngrx/effects";
 import {StepsActions} from "../actions/steps.actions";
-import {Observable} from "rxjs";
+import {Observable, BehaviorSubject} from "rxjs";
 import {TimersActions} from "../actions/timers.actions";
 import {Timer} from "../models/Timer";
 import {Action} from "@ngrx/store";
+import {Step} from "../models/Step";
 
 @Injectable()
 export class StepsEffects {
 
-  constructor(private actions: Actions, private stepsService: StepsService, private timersActions: TimersActions, private stepsActions: StepsActions) {}
+  private previousStep: BehaviorSubject<Step> = new BehaviorSubject(null);
+
+  constructor(private actions: Actions, private stepsService: StepsService, private timersActions: TimersActions, private stepsActions: StepsActions) {
+    stepsService.previousStep.subscribe(this.previousStep);
+  }
 
   /**
    * Start a timer for the step that has passed.
@@ -19,10 +24,10 @@ export class StepsEffects {
   @Effect() effectStartTimer: Observable<Action> = this.actions
     .ofType(StepsActions.NEXT)
     .map(toPayload)
-    .switchMap(() => this.stepsService.previousStep.take(1))
-    .filter(step => this.stepsService.isTimedStep(step))
-    .switchMap(step => {
-      const timer = new Timer(step.duration, new Date(), step);
+    .map(() => this.previousStep.getValue())
+    .filter(currentStep => this.stepsService.isTimedStep(currentStep))
+    .switchMap(currentStep => {
+      const timer = new Timer(currentStep.duration, new Date(), currentStep);
       return Observable.of(this.timersActions.addTimer(timer));
     });
 

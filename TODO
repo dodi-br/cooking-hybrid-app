@@ -1,4 +1,3 @@
-- error when: finishing recipe, returning home, select recipe, start recipe
 - layout
 - proper serviceworkers
 - local storage to store state -> questionbox to continue when appropriate

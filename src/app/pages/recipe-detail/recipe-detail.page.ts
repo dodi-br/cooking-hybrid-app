@@ -1,18 +1,21 @@
-import {Component} from "@angular/core";
-import {Recipe} from "../../models/Recipe";
-import {NavController} from "ionic-angular";
-import {Observable} from "rxjs";
-import {RecipeService} from "../../services/recipe-service";
-import {StepsPage} from "../steps/steps.page";
-import {StepsService} from "../steps/steps.service";
-import "rxjs/add/operator/take";
-import {PersonsService} from "../../services/persons-service";
-import {SocialSharingService} from "../../services/social-sharing-service";
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
+import {Recipe} from '../../models/Recipe';
+import {NavController} from 'ionic-angular';
+import {Observable, Subject} from 'rxjs';
+import {RecipeService} from '../../services/recipe-service';
+import {StepsPage} from '../steps/steps.page';
+import {StepsService} from '../steps/steps.service';
+import 'rxjs/add/operator/take';
+import {PersonsService} from '../../services/persons-service';
+import {SocialSharingService} from '../../services/social-sharing-service';
 
 @Component({
-  templateUrl: 'recipe-detail.html'
+  templateUrl: 'recipe-detail.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RecipeDetailPage {
+export class RecipeDetailPage implements OnInit, OnDestroy {
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
+
   recipe: Observable<Recipe>;
   numberOfPersons: string;
   whatsAppEnabled: Observable<boolean>;
@@ -21,9 +24,18 @@ export class RecipeDetailPage {
               private stepsService: StepsService, private personsService: PersonsService,
               private socialSharing: SocialSharingService) {
     this.recipe = recipeService.selectedRecipe;
-    this.recipe.subscribe(recipe => this.numberOfPersons = String(recipe.defaultNumberOfPersons));
-
     this.whatsAppEnabled = socialSharing.whatsAppEnabled;
+  }
+
+  ngOnInit() {
+    this.recipe
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(recipe => this.numberOfPersons = String(recipe.defaultNumberOfPersons));
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   start() {
