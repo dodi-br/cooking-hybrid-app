@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Step} from "../../models/Step";
 import {Store} from "@ngrx/store";
-import {AppStore} from "../../reducers/app.store";
 import {StepsActions} from "../../actions/steps.actions";
 
 import 'rxjs/add/operator/take';
@@ -25,7 +24,7 @@ export class StepsService {
 
   startTime: Observable<Date>;
 
-  constructor(private store: Store<AppStore>, private stepsActions: StepsActions, private timersService: TimersService) {
+  constructor(private store: Store<any>, private stepsActions: StepsActions, private timersService: TimersService) {
     this.steps = store.select(state => state.steps.all);
     this.currentStep = store.select(state => state.steps.currentStep)
       .filter(step => step != null);

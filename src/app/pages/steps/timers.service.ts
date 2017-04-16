@@ -6,7 +6,6 @@ import "rxjs/add/operator/do";
 import "rxjs/add/operator/share";
 import {Timer} from "../../models/Timer";
 import {Store} from "@ngrx/store";
-import {AppStore} from "../../reducers/app.store";
 import {Observable} from "rxjs";
 import {Step} from "../../models/Step";
 
@@ -27,7 +26,7 @@ export class TimersService {
    */
   completedTimer: Observable<Timer<Step>>;
 
-  constructor(private store: Store<AppStore>) {
+  constructor(private store: Store<any>) {
     this.runningTimers = store.select(state => state.timers.running);
     this.completedTimers = store.select(state => state.timers.completed);
 

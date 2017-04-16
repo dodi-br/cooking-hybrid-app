@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {IonicApp, IonicModule} from "ionic-angular";
+import {IonicApp, IonicModule, Platform} from "ionic-angular";
 import {CookingApp} from "./app.component";
 import {IngredientComponent} from "./components/ingredient/ingredient.component";
 import {ScreenService} from "./services/screen-service";
@@ -12,7 +12,7 @@ import {RecipeSelectionPage} from "./pages/recipe-selection/recipe-selection.pag
 import {RecipeDetailPage} from "./pages/recipe-detail/recipe-detail.page";
 import {ValuesPipe} from "./pages/recipe-detail/values.pipe";
 import {StepsPage} from "./pages/steps/steps.page";
-import {StoreModule} from "@ngrx/store";
+import {Store, StoreModule} from "@ngrx/store";
 import {recipesReducer} from "./reducers/recipes.reducer";
 import {RecipesActions} from "./actions/recipes.actions";
 import {SelectedRecipeActions} from "./actions/selectedRecipe.actions";
@@ -37,13 +37,20 @@ import {SocialSharing} from "@ionic-native/social-sharing";
 import {SocialSharingService} from "./services/social-sharing-service";
 import {Ionic2RatingModule} from "ionic2-rating";
 import {JsonHttp} from "./services/json-http.service";
-import {TimingEffects} from "./effects/timing.effects";
+import {TimingEffects} from "./effects/remote-events.effects";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpModule} from "@angular/http";
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen'
 import {RatingsEffects} from "./effects/ratings.effects";
 import {LocalNotifications} from "@ionic-native/local-notifications";
+import {PlatformActions} from "./actions/platform.actions";
+import {sessionReducer} from "./reducers/session.reducer";
+import {SessionEffects} from "./effects/session.effects";
+import {SessionService} from "./services/session.service";
+import {SessionActions} from "./actions/session.actions";
+import {RemoteEventsService} from "./services/remote-events.service";
+import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 
 @NgModule({
   declarations: [
@@ -68,13 +75,15 @@ import {LocalNotifications} from "@ionic-native/local-notifications";
       selectedRecipe: selectedRecipeReducer,
       steps: stepsReducer,
       timers: timersReducer,
-      numberOfPersons: personsReducer
+      numberOfPersons: personsReducer,
+      sessionId: sessionReducer
     }),
     EffectsModule.run(TimingEffects),
     EffectsModule.run(StepsEffects),
     EffectsModule.run(TimersEffects),
     EffectsModule.run(RecipesEffects),
     EffectsModule.run(RatingsEffects),
+    EffectsModule.run(SessionEffects),
     Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
@@ -104,7 +113,18 @@ import {LocalNotifications} from "@ionic-native/local-notifications";
     JsonHttp,
     StatusBar,
     SplashScreen,
-    LocalNotifications
+    UniqueDeviceID,
+    LocalNotifications,
+    PlatformActions,
+    SessionService,
+    SessionActions,
+    RemoteEventsService
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(platform: Platform, store: Store<any>, platformActions: PlatformActions) {
+    platform.ready().then(() =>
+      store.dispatch(platformActions.ready())
+    );
+  }
+}

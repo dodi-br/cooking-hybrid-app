@@ -26,6 +26,7 @@
     "@ionic-native/social-sharing": "3.4.2",
     "@ionic-native/splash-screen": "3.4.2",
     "@ionic-native/status-bar": "3.4.2",
+    "@ionic-native/unique-device-id": "3.4.2",
     "@ionic/storage": "2.0.1",
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^2.0.0",
@@ -64,7 +65,7 @@
   ],
   "cordovaPlatforms": [],
   "config": {
-    "uncomment-ionic_source_map_type": "eval",
-    "ionic_source_map_type": "source-map"
+    "ionic_source_map_type": "eval",
+    "uncomment-ionic_source_map_type": "source-map"
   }
 }
