@@ -22,16 +22,12 @@ export class StepsService {
   hasPrevious: Observable<boolean>;
   canComplete: Observable<boolean>;
 
-  startTime: Observable<Date>;
-
   constructor(private store: Store<any>, private stepsActions: StepsActions, private timersService: TimersService) {
     this.steps = store.select(state => state.steps.all);
     this.currentStep = store.select(state => state.steps.currentStep)
       .filter(step => step != null);
     this.nextStep = store.select(state => state.steps.nextStep);
     this.previousStep = store.select(state => state.steps.previousStep);
-
-    this.startTime = store.select(state => state.steps.startTime);
 
     this.hasNext = Observable.combineLatest(
       this.currentStep,
