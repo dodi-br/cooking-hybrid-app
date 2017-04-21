@@ -13,7 +13,6 @@ export class Recipe {
   category: RecipeCategory;
   version: string;
   subtitle: string;
-  image: string;
   description: string;
   allowedPersons: [number, number];
   defaultNumberOfPersons: number;

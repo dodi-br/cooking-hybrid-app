@@ -1,0 +1,53 @@
+recipe-selection {
+  ion-card {
+    $margin: 1%;
+    position: relative;
+    text-align: center;
+    height: calc(100% / 3 - #{$margin});
+    margin: $margin;
+
+    &.fish {
+      background-color: $fish-color;
+    }
+
+    &.vegan {
+      background-color: $vegan-color;
+    }
+
+    &.meat {
+      background-color: $meat-color;
+    }
+
+    img {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0 auto;
+      width: 50%;
+      max-width: 350px;
+      max-height: 150px;
+    }
+
+    .card-description {
+      position: absolute;
+      top: 75%;
+      left: 50%;
+      font-family: 'RM Typerighter Regular';
+      font-weight: normal;
+      width: 100%;
+    }
+
+    .card-title, .card-subtitle {
+      position: relative;
+      left: -50%;
+    }
+
+    .card-title {
+      font-size: 3em;
+    }
+
+    .card-subtitle {
+      font-size: 2.2em;
+    }
+  }
+}

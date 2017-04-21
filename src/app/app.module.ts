@@ -51,6 +51,7 @@ import {SessionService} from "./services/session.service";
 import {SessionActions} from "./actions/session.actions";
 import {RemoteEventsService} from "./services/remote-events.service";
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
+import {RecipeSelectionComponent} from "./components/recipe-selection/recipe-selection.component";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import {UniqueDeviceID} from '@ionic-native/unique-device-id';
     StepComponent,
     TimerComponent,
     TimerCompletedComponent,
+    RecipeSelectionComponent,
     ValuesPipe
   ],
   imports: [

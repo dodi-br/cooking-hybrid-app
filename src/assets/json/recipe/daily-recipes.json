@@ -1,11 +1,192 @@
 [
   {
     "id": "1",
-    "name": "Pasta with salami",
+    "name": "Gestoofde zalm",
     "version": "1",
-    "subtitle": "Oeee thats sweet!",
+    "subtitle": "met krieltjes en prei",
+    "category": "fish",
+    "description": "Een lekker gerecht met penne, salami en rode saus.",
+    "allowedPersons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "defaultNumberOfPersons": 2,
+    "averageDuration": 1800,
+    "type": "container",
+    "ingredients": {
+      "knoflook": {
+        "type": "number-category",
+        "n": 1.5,
+        "singular": "teen",
+        "plural": "tenen",
+        "name": "knoflook"
+      },
+      "salami": {
+        "type": "multiple",
+        "n": 0.5,
+        "singular": "Salami reep (150gr)",
+        "plural": "Salami repen (150gr)"
+      },
+      "spinazie": {
+        "type": "unit",
+        "unit": "gr",
+        "n": 150,
+        "name": "Spinazie"
+      },
+      "penne": {
+        "type": "unit",
+        "unit": "gr",
+        "n": 90,
+        "name": "Penne"
+      },
+      "tomaat": {
+        "type": "multiple",
+        "n": 1,
+        "singular": "tomaat",
+        "plural": "tomaten"
+      },
+      "peper": {
+        "type": "unitless",
+        "name": "peper"
+      },
+      "zout": {
+        "type": "unitless",
+        "name": "zout"
+      },
+      "olijfolie": {
+        "type": "unitless",
+        "name": "olijfolie"
+      },
+      "basilicum": {
+        "type": "unitless",
+        "name": "verse basilicum"
+      },
+      "saus": {
+        "type": "multiple",
+        "n": 0.5,
+        "singular": "pot pasta saus",
+        "plural": "potten pasta saus"
+      }
+    },
+    "steps": [
+      {
+        "id": 1,
+        "action": "Haal het vel van 1 knoflook teen",
+        "description": "Niet snijden",
+        "type": "simple",
+        "ingredientId": "knoflook",
+        "amount": {
+          "value": 1,
+          "type": "absolute"
+        }
+      },
+      {
+        "action": "Wait for everything to finish",
+        "type": "wait"
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "name": "Courgette quiche",
+    "version": "1",
+    "subtitle": "met geitenkaas en lente uit",
+    "category": "vegan",
+    "description": "Een lekker gerecht met penne, salami en rode saus.",
+    "allowedPersons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "defaultNumberOfPersons": 2,
+    "averageDuration": 1800,
+    "type": "container",
+    "ingredients": {
+      "knoflook": {
+        "type": "number-category",
+        "n": 1.5,
+        "singular": "teen",
+        "plural": "tenen",
+        "name": "knoflook"
+      },
+      "salami": {
+        "type": "multiple",
+        "n": 0.5,
+        "singular": "Salami reep (150gr)",
+        "plural": "Salami repen (150gr)"
+      },
+      "spinazie": {
+        "type": "unit",
+        "unit": "gr",
+        "n": 150,
+        "name": "Spinazie"
+      },
+      "penne": {
+        "type": "unit",
+        "unit": "gr",
+        "n": 90,
+        "name": "Penne"
+      },
+      "tomaat": {
+        "type": "multiple",
+        "n": 1,
+        "singular": "tomaat",
+        "plural": "tomaten"
+      },
+      "peper": {
+        "type": "unitless",
+        "name": "peper"
+      },
+      "zout": {
+        "type": "unitless",
+        "name": "zout"
+      },
+      "olijfolie": {
+        "type": "unitless",
+        "name": "olijfolie"
+      },
+      "basilicum": {
+        "type": "unitless",
+        "name": "verse basilicum"
+      },
+      "saus": {
+        "type": "multiple",
+        "n": 0.5,
+        "singular": "pot pasta saus",
+        "plural": "potten pasta saus"
+      }
+    },
+    "steps": [
+      {
+        "id": 1,
+        "action": "Haal het vel van 1 knoflook teen",
+        "description": "Niet snijden",
+        "type": "simple",
+        "ingredientId": "knoflook",
+        "amount": {
+          "value": 1,
+          "type": "absolute"
+        }
+      },
+      {
+        "action": "Wait for everything to finish",
+        "type": "wait"
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "name": "Pasta Carbonara",
+    "version": "1",
+    "subtitle": "met rucola en koriander",
     "category": "meat",
-    "image": "assets/img/fish-dish.png",
     "description": "Een lekker gerecht met penne, salami en rode saus.",
     "allowedPersons": [
       1,

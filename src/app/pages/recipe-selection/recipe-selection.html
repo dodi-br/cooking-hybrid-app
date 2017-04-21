@@ -1,12 +1,3 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Recipe selection
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-
 <ion-content class="center" overflow-scroll="true">
   <ion-refresher (ionRefresh)="refreshRecipes($event)">
     <ion-refresher-content
@@ -17,9 +8,8 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let recipe of dailyRecipes | async" (click)="navigateToRecipeDetail(recipe)" tappable>
-    <img src="{{recipe.image}}"/>
-    <div class="card-title">{{recipe.name}}</div>
-    <div class="card-subtitle">{{recipe.subtitle}}</div>
-  </ion-card>
+  <recipe-selection
+    (onSelect)="navigateToRecipeDetail($event)"
+    [recipes]="dailyRecipes | async">
+  </recipe-selection>
 </ion-content>

@@ -47,6 +47,6 @@ export class RecipeDetailPage implements OnInit, OnDestroy {
 
   shareRecipe() {
     this.recipe.take(1)
-      .subscribe(recipe => this.socialSharing.shareViaWhatsApp(recipe.name, recipe.image, null));
+      .subscribe(recipe => this.socialSharing.shareViaWhatsApp(recipe.name, null, null));
   }
 }
