@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Recipe ingredients
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="center" overflow-scroll="true">
+  <recipe-card [recipe]="recipe | async"></recipe-card>
+
+  <h4 translate="Aantal personen"></h4>
+
+  <ion-segment [(ngModel)]="numberOfPersons" color="primary">
+    <ion-segment-button *ngFor="let persons of (recipe | async).allowedPersons" value="{{persons}}">
+      {{persons}}
+    </ion-segment-button>
+  </ion-segment>
+
+  <h4>Ingredients</h4>
+
+  <div class="list list-small">
+
+    <div class="item" *ngFor="let ingredient of ((recipe | async).ingredients | values)">
+      <ingredient [ingredient]="ingredient" [persons]="numberOfPersons"></ingredient>
+    </div>
+
+  </div>
+
+  <button (click)="start()">
+    Start
+  </button>
+</ion-content>

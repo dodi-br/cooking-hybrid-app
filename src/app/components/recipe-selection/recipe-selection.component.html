@@ -1,13 +1,2 @@
-<ion-card *ngFor="let recipe of recipes" (click)="select(recipe)" tappable class="{{recipe.category}}">
-  <img src="assets/img/{{recipe.category}}.svg"/>
-
-  <div class="card-description">
-    <div class="card-title">
-      {{recipe.name}}
-    </div>
-
-    <div class="card-subtitle">
-      {{recipe.subtitle}}
-    </div>
-  </div>
-</ion-card>
+<recipe-card *ngFor="let recipe of recipes" (click)="select(recipe)" [recipe]="recipe">
+</recipe-card>

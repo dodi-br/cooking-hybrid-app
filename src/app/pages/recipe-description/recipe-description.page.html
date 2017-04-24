@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Recipe selection
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="center" overflow-scroll="true">
+  <recipe-card [recipe]="recipe | async"></recipe-card>
+
+  <h4>Beschrijving</h4>
+  <div>
+    {{(recipe | async).description}}
+  </div>
+
+  <button (click)="next()">
+    Next
+  </button>
+
+  <button *ngIf="whatsAppEnabled | async" (click)="shareRecipe(recipe)">
+    Share via Whatsapp!
+  </button>
+</ion-content>

@@ -1,6 +1,6 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {RecipeDetailPage} from "../recipe-detail/recipe-detail.page";
+import {RecipeDescriptionPage} from "../recipe-description/recipe-description.page";
 import {Recipe} from "../../models/Recipe";
 import {RecipeService} from "../../services/recipe-service";
 import {Observable} from "rxjs";
@@ -19,7 +19,7 @@ export class RecipeSelectionPage {
 
   navigateToRecipeDetail(recipe) {
     this.recipeService.selectRecipe(recipe);
-    this.$nav.push(RecipeDetailPage);
+    this.$nav.push(RecipeDescriptionPage);
   }
 
   refreshRecipes(refresher) {

@@ -9,8 +9,9 @@ import {StepComponent} from "./pages/steps/step/step.component";
 import {RecipeCompletedPage} from "./pages/recipe-completed/recipe-completed.page";
 import {WindowRef} from "./services/window-ref";
 import {RecipeSelectionPage} from "./pages/recipe-selection/recipe-selection.page";
-import {RecipeDetailPage} from "./pages/recipe-detail/recipe-detail.page";
-import {ValuesPipe} from "./pages/recipe-detail/values.pipe";
+import {RecipeDescriptionPage} from "./pages/recipe-description/recipe-description.page";
+import {RecipeIngredientsPage} from './pages/recipe-ingredients/recipe-ingredients.page';
+import {ValuesPipe} from "./pages/recipe-description/values.pipe";
 import {StepsPage} from "./pages/steps/steps.page";
 import {Store, StoreModule} from "@ngrx/store";
 import {recipesReducer} from "./reducers/recipes.reducer";
@@ -52,13 +53,15 @@ import {SessionActions} from "./actions/session.actions";
 import {RemoteEventsService} from "./services/remote-events.service";
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {RecipeSelectionComponent} from "./components/recipe-selection/recipe-selection.component";
+import {RecipeCardComponent} from "./components/recipe-card/recipe-card.component";
 
 @NgModule({
   declarations: [
     CookingApp,
     RecipeSelectionPage,
-    RecipeDetailPage,
+    RecipeDescriptionPage,
     RecipeCompletedPage,
+    RecipeIngredientsPage,
     StepsPage,
     IngredientComponent,
     PartialIngredientComponent,
@@ -66,6 +69,7 @@ import {RecipeSelectionComponent} from "./components/recipe-selection/recipe-sel
     TimerComponent,
     TimerCompletedComponent,
     RecipeSelectionComponent,
+    RecipeCardComponent,
     ValuesPipe
   ],
   imports: [
@@ -92,8 +96,9 @@ import {RecipeSelectionComponent} from "./components/recipe-selection/recipe-sel
   entryComponents: [
     CookingApp,
     RecipeSelectionPage,
-    RecipeDetailPage,
+    RecipeDescriptionPage,
     RecipeCompletedPage,
+    RecipeIngredientsPage,
     StepsPage,
     TimerCompletedComponent
   ],
