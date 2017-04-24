@@ -4,7 +4,7 @@ import {Amount} from "../../models/Amount";
 
 @Component({
   selector: 'partial-ingredient',
-  templateUrl: 'ingredient.html'
+  templateUrl: 'ingredient.component.html'
 })
 export class PartialIngredientComponent extends IngredientComponent {
 

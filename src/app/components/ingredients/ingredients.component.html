@@ -1,0 +1,7 @@
+<div class="list list-small">
+
+  <div class="item" *ngFor="let ingredient of (recipe.ingredients | values)">
+    <ingredient [ingredient]="ingredient" [persons]="persons"></ingredient>
+  </div>
+
+</div>

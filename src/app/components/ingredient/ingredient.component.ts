@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Ingredient} from "../../models/Ingredient";
 
 @Component({
   selector: 'ingredient',
-  templateUrl: 'ingredient.html'
+  templateUrl: 'ingredient.component.html'
 })
-export class IngredientComponent {
+export class IngredientComponent implements OnChanges {
 
   @Input() persons: number;
   @Input() ingredient: Ingredient;

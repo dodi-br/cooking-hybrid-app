@@ -19,13 +19,7 @@
 
   <h4>Ingredients</h4>
 
-  <div class="list list-small">
-
-    <div class="item" *ngFor="let ingredient of ((recipe | async).ingredients | values)">
-      <ingredient [ingredient]="ingredient" [persons]="numberOfPersons"></ingredient>
-    </div>
-
-  </div>
+  <ingredients [recipe]="recipe | async" [persons]="numberOfPersons"></ingredients>
 
   <button (click)="start()">
     Start

@@ -54,6 +54,7 @@ import {RemoteEventsService} from "./services/remote-events.service";
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {RecipeSelectionComponent} from "./components/recipe-selection/recipe-selection.component";
 import {RecipeCardComponent} from "./components/recipe-card/recipe-card.component";
+import {IngredientsComponent} from "./components/ingredients/ingredients.component";
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {RecipeCardComponent} from "./components/recipe-card/recipe-card.componen
     TimerCompletedComponent,
     RecipeSelectionComponent,
     RecipeCardComponent,
+    IngredientsComponent,
     ValuesPipe
   ],
   imports: [
