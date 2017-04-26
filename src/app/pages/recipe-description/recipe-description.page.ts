@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from "@angular/core";
 import {Recipe} from "../../models/Recipe";
-import {NavController} from "ionic-angular";
+import {NavController, NavParams} from "ionic-angular";
 import {Observable} from "rxjs";
 import {RecipeService} from "../../services/recipe-service";
 import {RecipeIngredientsPage} from "../recipe-ingredients/recipe-ingredients.page";
@@ -13,7 +13,8 @@ export class RecipeDescriptionPage {
 
   recipe: Observable<Recipe>;
 
-  constructor(private $nav: NavController, private recipeService: RecipeService) {
+  constructor(private $nav: NavController, params: NavParams, recipeService: RecipeService) {
+    recipeService.loadRecipe(params.get('recipeId'));
     this.recipe = recipeService.selectedRecipe;
   }
 
@@ -29,6 +30,6 @@ export class RecipeDescriptionPage {
   }
 
   getUrlToShare(recipe: Recipe) {
-
+    return 'cooking://test-me';
   }
 }

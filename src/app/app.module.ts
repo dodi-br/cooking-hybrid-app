@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {IonicApp, IonicModule, Platform} from "ionic-angular";
+import {IonicApp, IonicModule} from "ionic-angular";
 import {CookingApp} from "./app.component";
 import {IngredientComponent} from "./components/ingredient/ingredient.component";
 import {ScreenService} from "./services/screen-service";
@@ -13,11 +13,10 @@ import {RecipeDescriptionPage} from "./pages/recipe-description/recipe-descripti
 import {RecipeIngredientsPage} from "./pages/recipe-ingredients/recipe-ingredients.page";
 import {ValuesPipe} from "./pages/recipe-description/values.pipe";
 import {StepsPage} from "./pages/steps/steps.page";
-import {Store, StoreModule} from "@ngrx/store";
+import {StoreModule} from "@ngrx/store";
 import {recipesReducer} from "./reducers/recipes.reducer";
 import {RecipesActions} from "./actions/recipes.actions";
-import {SelectedRecipeActions} from "./actions/selectedRecipe.actions";
-import {selectedRecipeReducer} from "./reducers/selectedRecipe.reducer";
+import {IndividualRecipeActions} from "./actions/individual-recipe.actions";
 import {StepsService} from "./pages/steps/steps.service";
 import {StepsActions} from "./actions/steps.actions";
 import {stepsReducer} from "./reducers/steps.reducer";
@@ -56,6 +55,9 @@ import {RecipeCardComponent} from "./components/recipe-card/recipe-card.componen
 import {IngredientsComponent} from "./components/ingredients/ingredients.component";
 import {Device} from "@ionic-native/device";
 import {ShareViaWhatsappButtonComponent} from "./components/share-via-whatsapp-button/share-via-whatsapp-button.component";
+import {Deeplinks} from "@ionic-native/deeplinks";
+import {individualRecipeReducer} from "./reducers/individual-recipe.reducer";
+import {IndividualRecipeEffects} from "./effects/individual-recipe.effects";
 
 @NgModule({
   declarations: [
@@ -82,7 +84,7 @@ import {ShareViaWhatsappButtonComponent} from "./components/share-via-whatsapp-b
     IonicModule.forRoot(CookingApp),
     StoreModule.provideStore({
       recipes: recipesReducer,
-      selectedRecipe: selectedRecipeReducer,
+      selectedRecipe: individualRecipeReducer,
       steps: stepsReducer,
       timers: timersReducer,
       numberOfPersons: personsReducer,
@@ -94,6 +96,7 @@ import {ShareViaWhatsappButtonComponent} from "./components/share-via-whatsapp-b
     EffectsModule.run(RecipesEffects),
     EffectsModule.run(RatingsEffects),
     EffectsModule.run(SessionEffects),
+    EffectsModule.run(IndividualRecipeEffects),
     Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
@@ -114,7 +117,7 @@ import {ShareViaWhatsappButtonComponent} from "./components/share-via-whatsapp-b
     ScreenService,
     RecipeService,
     RecipesActions,
-    SelectedRecipeActions,
+    IndividualRecipeActions,
     StepsService,
     StepsActions,
     TimersService,
@@ -129,14 +132,9 @@ import {ShareViaWhatsappButtonComponent} from "./components/share-via-whatsapp-b
     PlatformActions,
     SessionService,
     SessionActions,
-    RemoteEventsService
+    RemoteEventsService,
+    Deeplinks
   ]
 })
 export class AppModule {
-  constructor(platform: Platform, store: Store<any>, platformActions: PlatformActions, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      store.dispatch(platformActions.ready());
-      splashScreen.hide();
-    });
-  }
 }

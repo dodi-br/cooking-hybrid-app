@@ -7,19 +7,21 @@
 </ion-header>
 
 <ion-content class="center" overflow-scroll="true">
-  <recipe-card [recipe]="recipe | async"></recipe-card>
+  <ng-container *ngIf="recipe | async">
+    <recipe-card [recipe]="recipe | async"></recipe-card>
 
-  <h4>Beschrijving</h4>
-  <div>
-    {{(recipe | async).description}}
-  </div>
+    <h4>Beschrijving</h4>
+    <div>
+      {{(recipe | async).description}}
+    </div>
 
-  <button (click)="next()">
-    Next
-  </button>
+    <button (click)="next()">
+      Next
+    </button>
 
-  <share-via-whatsapp-button
-    [input]="recipe | async"
-    [message]="getMessageToShare">
-  </share-via-whatsapp-button>
+    <share-via-whatsapp-button
+      [input]="recipe | async"
+      [message]="getMessageToShare">
+    </share-via-whatsapp-button>
+  </ng-container>
 </ion-content>

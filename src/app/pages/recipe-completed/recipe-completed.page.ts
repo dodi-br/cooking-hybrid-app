@@ -23,7 +23,6 @@ export class RecipeCompletedPage {
   }
 
   home() {
-    this.recipesService.deselectRecipe();
     this.$navController.setRoot(RecipeSelectionPage);
   }
 }
