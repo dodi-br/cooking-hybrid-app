@@ -1,13 +1,12 @@
 import {Injectable} from "@angular/core";
 import {JsonHttp} from "./json-http.service";
 import {Recipe} from "../models/Recipe";
-import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {Observable} from "rxjs/Observable";
 import {SessionService} from "./session.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Device} from '@ionic-native/device';
+import {Device} from "@ionic-native/device";
 
-import moment from 'moment';
+import moment from "moment";
 
 const EVENT_TYPE_START_RECIPE = 'StartRecipe';
 const EVENT_TYPE_COMPLETE_RECIPE = 'CompleteRecipe';

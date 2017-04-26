@@ -55,6 +55,7 @@ import {RecipeSelectionComponent} from "./components/recipe-selection/recipe-sel
 import {RecipeCardComponent} from "./components/recipe-card/recipe-card.component";
 import {IngredientsComponent} from "./components/ingredients/ingredients.component";
 import {Device} from "@ionic-native/device";
+import {ShareViaWhatsappButtonComponent} from "./components/share-via-whatsapp-button/share-via-whatsapp-button.component";
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import {Device} from "@ionic-native/device";
     RecipeSelectionComponent,
     RecipeCardComponent,
     IngredientsComponent,
+    ShareViaWhatsappButtonComponent,
     ValuesPipe
   ],
   imports: [
