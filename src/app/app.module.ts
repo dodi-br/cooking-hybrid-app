@@ -10,7 +10,7 @@ import {RecipeCompletedPage} from "./pages/recipe-completed/recipe-completed.pag
 import {WindowRef} from "./services/window-ref";
 import {RecipeSelectionPage} from "./pages/recipe-selection/recipe-selection.page";
 import {RecipeDescriptionPage} from "./pages/recipe-description/recipe-description.page";
-import {RecipeIngredientsPage} from './pages/recipe-ingredients/recipe-ingredients.page';
+import {RecipeIngredientsPage} from "./pages/recipe-ingredients/recipe-ingredients.page";
 import {ValuesPipe} from "./pages/recipe-description/values.pipe";
 import {StepsPage} from "./pages/steps/steps.page";
 import {Store, StoreModule} from "@ngrx/store";
@@ -41,8 +41,8 @@ import {JsonHttp} from "./services/json-http.service";
 import {TimingEffects} from "./effects/remote-events.effects";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpModule} from "@angular/http";
-import {StatusBar} from '@ionic-native/status-bar';
-import {SplashScreen} from '@ionic-native/splash-screen'
+import {StatusBar} from "@ionic-native/status-bar";
+import {SplashScreen} from "@ionic-native/splash-screen";
 import {RatingsEffects} from "./effects/ratings.effects";
 import {LocalNotifications} from "@ionic-native/local-notifications";
 import {PlatformActions} from "./actions/platform.actions";
@@ -51,10 +51,10 @@ import {SessionEffects} from "./effects/session.effects";
 import {SessionService} from "./services/session.service";
 import {SessionActions} from "./actions/session.actions";
 import {RemoteEventsService} from "./services/remote-events.service";
-import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {RecipeSelectionComponent} from "./components/recipe-selection/recipe-selection.component";
 import {RecipeCardComponent} from "./components/recipe-card/recipe-card.component";
 import {IngredientsComponent} from "./components/ingredients/ingredients.component";
+import {Device} from "@ionic-native/device";
 
 @NgModule({
   declarations: [
@@ -122,7 +122,7 @@ import {IngredientsComponent} from "./components/ingredients/ingredients.compone
     JsonHttp,
     StatusBar,
     SplashScreen,
-    UniqueDeviceID,
+    Device,
     LocalNotifications,
     PlatformActions,
     SessionService,
@@ -131,9 +131,10 @@ import {IngredientsComponent} from "./components/ingredients/ingredients.compone
   ]
 })
 export class AppModule {
-  constructor(platform: Platform, store: Store<any>, platformActions: PlatformActions) {
-    platform.ready().then(() =>
-      store.dispatch(platformActions.ready())
-    );
+  constructor(platform: Platform, store: Store<any>, platformActions: PlatformActions, splashScreen: SplashScreen) {
+    platform.ready().then(() => {
+      store.dispatch(platformActions.ready());
+      splashScreen.hide();
+    });
   }
 }

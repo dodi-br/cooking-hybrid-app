@@ -1,4 +1,3 @@
-import { ActionReducer } from '@ngrx/store';
 import {Step} from "../models/Step";
 import {StepsActions} from "../actions/steps.actions";
 
@@ -20,7 +19,7 @@ const initialState: StepsState = {
   startTime: null
 };
 
-export const stepsReducer: ActionReducer<StepsState> = (state: StepsState = initialState, {type, payload}) => {
+export function stepsReducer(state: StepsState = initialState, {type, payload}) {
   switch (type) {
     case StepsActions.START:
       return {
@@ -62,4 +61,4 @@ export const stepsReducer: ActionReducer<StepsState> = (state: StepsState = init
     default:
       return state;
   }
-};
+}

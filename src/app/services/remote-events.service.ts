@@ -5,6 +5,8 @@ import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {Observable} from "rxjs/Observable";
 import {SessionService} from "./session.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Device} from '@ionic-native/device';
+
 import moment from 'moment';
 
 const EVENT_TYPE_START_RECIPE = 'StartRecipe';
@@ -15,7 +17,7 @@ export class RemoteEventsService {
 
   private sessionId: BehaviorSubject<string> = new BehaviorSubject(null);
 
-  constructor(private jsonHttp: JsonHttp, private uniqueDeviceId: UniqueDeviceID, private sessionService: SessionService) {
+  constructor(private jsonHttp: JsonHttp, private device: Device, private sessionService: SessionService) {
     sessionService.sessionId.subscribe(this.sessionId);
   }
 
@@ -32,7 +34,7 @@ export class RemoteEventsService {
   }
 
   private deviceId() {
-    return Observable.fromPromise(this.uniqueDeviceId.get());
+    return Observable.of(this.device.uuid);
   }
 
   private postEvent(eventType: String, params: Object) {

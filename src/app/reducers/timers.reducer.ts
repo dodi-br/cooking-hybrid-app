@@ -1,4 +1,3 @@
-import {ActionReducer} from "@ngrx/store";
 import {Timer} from "../models/Timer";
 import {TimersActions} from "../actions/timers.actions";
 
@@ -12,7 +11,7 @@ const initialState: TimersState = {
   completed: []
 };
 
-export const timersReducer: ActionReducer<TimersState> = (state: TimersState = initialState, {type, payload}) => {
+export function timersReducer(state: TimersState = initialState, {type, payload}) {
   switch (type) {
     case TimersActions.ADD:
       const alreadyStarted = state.running
@@ -40,4 +39,4 @@ export const timersReducer: ActionReducer<TimersState> = (state: TimersState = i
     default:
       return state;
   }
-};
+}

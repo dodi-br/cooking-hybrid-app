@@ -29,7 +29,7 @@ export class JsonHttp {
   }
 
   private buildUrl(relativeUrl: String) {
-    return (this.configuration.serverUrl + '/' + relativeUrl).replace(/\/+/, '/');
+    return (this.configuration.serverUrl + '/' + relativeUrl).replace(/\/+/g, '/');
   }
 
   private static appendJsonHeaders(options: RequestOptionsArgs) {
