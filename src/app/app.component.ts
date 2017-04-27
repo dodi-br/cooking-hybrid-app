@@ -24,7 +24,7 @@ export class CookingApp {
 
       deeplinks.routeWithNavController(this.nav, {
         '/recipe/:recipeId': RecipeDescriptionPage
-      });
+      }).subscribe();
     });
   }
 }
