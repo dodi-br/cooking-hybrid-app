@@ -26,10 +26,7 @@ export class RecipeDescriptionPage {
     return 'What do you think of: ' + recipe.name + '?';
   }
 
-  getImageToShare(recipe: Recipe) {
-  }
-
   getUrlToShare(recipe: Recipe) {
-    return 'cooking://test-me';
+    return 'cooking://app/recipe/' + recipe.id;
   }
 }
